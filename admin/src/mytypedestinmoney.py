@@ -36,94 +36,112 @@ def my_destin_pushout_csv(df, path_csv):
                 df.at[idx,"tipo_custo"] = tipo_custo_x 
             elif row_cc["descricao"].find('IMOBILIARIO')>=0:
                 tipo_custo_x = "financiamento"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('B2W COMPANH')>=0 or row_cc["descricao"].find('americanas')>=0:
-                tipo_custo_x = "americanas"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('APLICACAO CDB')>=0:
-                tipo_custo_x = "aplicacao"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('Cea')>=0 or row_cc["descricao"].find('Torra Torra')>=0 or row_cc["descricao"].find('Brooksfield')>=0:
-                tipo_custo_x = "roupa"
-                df.at[idx,"tipo_custo"] = tipo_custo_x                     
+                df.at[idx,"tipo_custo"] = tipo_custo_x                   
             elif row_cc["descricao"].find('REI DO OLEO')>=0 or row_cc["descricao"].find('Rei Do Oleo')>=0 or row_cc["descricao"].find('shell')>=0 or row_cc["descricao"].find('Olibone')>=0:
                 tipo_custo_x = "carro"
                 df.at[idx,"tipo_custo"] = tipo_custo_x   
             elif row_cc["descricao"].find('TAR PACOTE ITAU')>=0:
                 tipo_custo_x = "banco"
                 df.at[idx,"tipo_custo"] = tipo_custo_x   
-            elif row_cc["descricao"].find('Mayara')>=0:
+            elif row_cc["descricao"].find('Mayara')>=0 or row_cc["descricao"].find('PIX TRANSF  ROGERIO')>=0:
                 tipo_custo_x = "pipoca"
                 df.at[idx,"tipo_custo"] = tipo_custo_x           
             elif row_cc["descricao"].find('EDMILSO')>=0:
                 tipo_custo_x = "churros"
                 df.at[idx,"tipo_custo"] = tipo_custo_x
-
             elif row_cc["descricao"].find('erlonds')>=0:
                 tipo_custo_x = "cabeleireiro"
                 df.at[idx,"tipo_custo"] = tipo_custo_x                                                                                                        
-
-            elif row_cc["descricao"].find('SABESP')>=0:
-                tipo_custo_x = "sabesp"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('IMOBILIARIO')>=0:
-                tipo_custo_x = "financiamento"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('B2W COMPANH')>=0 or row_cc["descricao"].find('americanas')>=0:
-                tipo_custo_x = "americanas"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('APLICACAO CDB')>=0:
-                tipo_custo_x = "aplicacao"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('Cea')>=0 or row_cc["descricao"].find('Torra Torra')>=0 or row_cc["descricao"].find('Brooksfield')>=0:
-                tipo_custo_x = "roupa"
-                df.at[idx,"tipo_custo"] = tipo_custo_x                     
-            elif row_cc["descricao"].find('REI DO OLEO')>=0 or row_cc["descricao"].find('Rei Do Oleo')>=0 or row_cc["descricao"].find('shell')>=0 or row_cc["descricao"].find('Olibone')>=0:
-                tipo_custo_x = "carro"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('TAR PACOTE ITAU')>=0:
-                tipo_custo_x = "banco"
-                df.at[idx,"tipo_custo"] = tipo_custo_x   
-            elif row_cc["descricao"].find('Mayara')>=0:
+            elif row_cc["descricao"].find('PIX QRS PORTOSEG')>=0:
+                tipo_custo_x = "portoseguro"
+                df.at[idx,"tipo_custo"] = tipo_custo_x  
+            elif row_cc["descricao"].find('PIX TRANSF  ROGERIO')>=0:
                 tipo_custo_x = "pipoca"
-                df.at[idx,"tipo_custo"] = tipo_custo_x           
-            elif row_cc["descricao"].find('EDMILSO')>=0:
-                tipo_custo_x = "churros"
+                df.at[idx,"tipo_custo"] = tipo_custo_x                             
+            elif row_cc["descricao"].find('IMW')>=0:
+                tipo_custo_x = "igreja"
+                df.at[idx,"tipo_custo"] = tipo_custo_x 
+            elif row_cc["descricao"].find('SAQUE')>=0:
+                tipo_custo_x = "saque"
+                df.at[idx,"tipo_custo"] = tipo_custo_x 
+
+            # ESPECIFICO PARA CREDITO                 
+            elif row_cc["descricao"].find('olibone')>=0:
+                tipo_custo_x = "olibone"
+                df.at[idx,"tipo_custo"] = tipo_custo_x  
+            elif row_cc["descricao"].find('Oleo')>=0:
+                tipo_custo_x = "oleo"
+                df.at[idx,"tipo_custo"] = tipo_custo_x                  
+            elif row_cc["descricao"].find('americanas')>=0 or row_cc["descricao"].find('Lojas Americ')>=0:
+                tipo_custo_x = "americans"
+                df.at[idx,"tipo_custo"] = tipo_custo_x
+            elif row_cc["descricao"].find('Cea')>=0:
+                tipo_custo_x = "cea"
+                df.at[idx,"tipo_custo"] = tipo_custo_x    
+            elif row_cc["descricao"].find('Torra')>=0:
+                tipo_custo_x = "torra"
+                df.at[idx,"tipo_custo"] = tipo_custo_x         
+            elif row_cc["descricao"].find('Parcelamen')>=0:
+                tipo_custo_x = "fautura_parcelado"
+                df.at[idx,"tipo_custo"] = tipo_custo_x 
+            elif row_cc["descricao"].find('Avila')>=0:
+                tipo_custo_x = "frango"
+                df.at[idx,"tipo_custo"] = tipo_custo_x 
+            elif row_cc["descricao"].find('Zagaia')>=0:
+                tipo_custo_x = "hotel"
+                df.at[idx,"tipo_custo"] = tipo_custo_x   
+            elif row_cc["descricao"].find('google')>=0:
+                tipo_custo_x = "google"
+                df.at[idx,"tipo_custo"] = tipo_custo_x    
+            elif row_cc["descricao"].find('google')>=0:
+                tipo_custo_x = "google"
+                df.at[idx,"tipo_custo"] = tipo_custo_x   
+            elif row_cc["descricao"].find('Localiza')>=0 or row_cc["descricao"].find('Aluguel')>=0:
+                tipo_custo_x = "localiza"
+                df.at[idx,"tipo_custo"] = tipo_custo_x  
+            elif row_cc["descricao"].find('Padaria')>=0:
+                tipo_custo_x = "padaria"
+                df.at[idx,"tipo_custo"] = tipo_custo_x         
+            elif row_cc["descricao"].find('Amazon')>=0:
+                tipo_custo_x = "amazon"
+                df.at[idx,"tipo_custo"] = tipo_custo_x  
+            elif row_cc["descricao"].find('Oggi')>=0:
+                tipo_custo_x = "sorvete"
+                df.at[idx,"tipo_custo"] = tipo_custo_x   
+            elif row_cc["descricao"].find('Legado')>=0:
+                tipo_custo_x = "alimentação"
+                df.at[idx,"tipo_custo"] = tipo_custo_x                                                                                                                                                                                                                     
+            elif row_cc["descricao"].find('R9 Parque Nov')>=0:
+                tipo_custo_x = "futebol"
+                df.at[idx,"tipo_custo"] = tipo_custo_x 
+            elif row_cc["descricao"].find('Max Fama')>=0:
+                tipo_custo_x = "curso_modelo"
+                df.at[idx,"tipo_custo"] = tipo_custo_x  
+            elif row_cc["descricao"].find('Netflix')>=0:
+                tipo_custo_x = "netflix"
                 df.at[idx,"tipo_custo"] = tipo_custo_x     
-            elif row_cc["descricao"].find('erlonds')>=0:
-                tipo_custo_x = "cabeleireiro"
-                df.at[idx,"tipo_custo"] = tipo_custo_x                                                       
-            elif row_cc["descricao"].find('SABESP')>=0:
-                tipo_custo_x = "sabesp"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('IMOBILIARIO')>=0:
-                tipo_custo_x = "financiamento"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('B2W COMPANH')>=0 or row_cc["descricao"].find('americanas')>=0:
-                tipo_custo_x = "americanas"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('APLICACAO CDB')>=0:
-                tipo_custo_x = "aplicacao"
-                df.at[idx,"tipo_custo"] = tipo_custo_x 
-            elif row_cc["descricao"].find('Cea')>=0 or row_cc["descricao"].find('Torra Torra')>=0 or row_cc["descricao"].find('Brooksfield')>=0:
-                tipo_custo_x = "roupa"
-                df.at[idx,"tipo_custo"] = tipo_custo_x                     
-            elif row_cc["descricao"].find('REI DO OLEO')>=0 or row_cc["descricao"].find('Rei Do Oleo')>=0 or row_cc["descricao"].find('shell')>=0 or row_cc["descricao"].find('Olibone')>=0:
-                tipo_custo_x = "carro"
-                df.at[idx,"tipo_custo"] = tipo_custo_x        
-            elif row_cc["descricao"].find('TAR PACOTE ITAU')>=0:
-                tipo_custo_x = "banco"
+            elif row_cc["descricao"].find('Centauro')>=0:
+                tipo_custo_x = "centauro"
                 df.at[idx,"tipo_custo"] = tipo_custo_x   
-            elif row_cc["descricao"].find('Mayara')>=0:
-                tipo_custo_x = "pipoca"
-                df.at[idx,"tipo_custo"] = tipo_custo_x           
-            elif row_cc["descricao"].find('EDMILSO')>=0:
-                tipo_custo_x = "churros"
-                df.at[idx,"tipo_custo"] = tipo_custo_x   
-            elif row_cc["descricao"].find('erlonds')>=0:
-                tipo_custo_x = "cabeleireiro"
-                df.at[idx,"tipo_custo"] = tipo_custo_x                                                      
-
+            elif row_cc["descricao"].find('Chute Inicial Cori')>=0:
+                tipo_custo_x = "futebol"
+                df.at[idx,"tipo_custo"] = tipo_custo_x  
+            elif row_cc["descricao"].find('Crisval Agencia')>=0:
+                tipo_custo_x = "viagem"
+                df.at[idx,"tipo_custo"] = tipo_custo_x    
+            elif row_cc["descricao"].find('Khelf')>=0:
+                tipo_custo_x = "khelf"
+                df.at[idx,"tipo_custo"] = tipo_custo_x 
+            elif row_cc["descricao"].find('Fernandinhos')>=0:
+                tipo_custo_x = "roupas"
+                df.at[idx,"tipo_custo"] = tipo_custo_x 
+            elif row_cc["descricao"].find('Jarouche')>=0:
+                tipo_custo_x = "roupas"
+                df.at[idx,"tipo_custo"] = tipo_custo_x                 
+            elif row_cc["descricao"].find('Artemis')>=0:
+                tipo_custo_x = "roupas"
+                df.at[idx,"tipo_custo"] = tipo_custo_x  
+                                                                                                     
             else:
                 #print ("terceira verificação de de-para custo:",row_cc["descricao"]," / posicao:",index_cc)
 

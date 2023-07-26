@@ -137,6 +137,7 @@ def my_type_modal_finance(df, path, file, tipo_doc_extract ):
             df = df.loc[df['valor_alt'] >= 0].copy()
             df = df[df['descricao'].str.contains(r'SALDO[^\\b]+\w')==False].copy()
             df = df[df['descricao'].str.contains(r'RES APLIC[^\\b]+\w')==False].copy()
+            df = df[df['descricao'].str.contains(r'REND PAGO[^\\b]+\w')==False].copy()
 
             print(f"TOTAL DE LINHAS PULLING: {len(df)}", "\n")
 

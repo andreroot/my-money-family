@@ -81,7 +81,7 @@ def my_credits(df, path, file ):
     if len(df):
 
         print(f"CREDITS:{file}", "\n")
-        print(f"TOTAL DE LINHAS STOP: {len(df)}", "\n")
+        print(f"TOTAL DE LINHAS CREDITS: {len(df)}", "\n")
 
         insert_df_credits(my_credits_pushout_money(path, df), f'{path}/json/credits.json','devsamelo2.dev_domestico.credito_2023_excel')
 
