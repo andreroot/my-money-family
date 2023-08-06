@@ -151,9 +151,9 @@ def my_type_modal_finance(df, path, file, tipo_doc_extract ):
 
             print(f"SAIDA / CUSTO / PUSHOUT:{file}", "\n")
             df = df.loc[df['valor_alt'] < 0].copy()
-            df = df.loc[df['descricao'].str.contains(r'SALDO[^\\b]+\w')==False].copy()
-            df = df.loc[df['descricao'].str.contains(r'APL[^\\b]APLIC[^\\b]AUT[^\\b]MAIS')==False].copy()
-            df = df.loc[df['descricao'].str.contains(r'RES[^\\b]APLIC[^\\b]AUT[^\\b]MAIS')==False].copy()           
+            df = df.loc[df['descricao'].str.contains(r'SALDO[^\\b]+\w|APL[^\\b]APLIC[^\\b]AUT[^\\b]MAIS|RES[^\\b]APLIC[^\\b]AUT[^\\b]MAIS')==False].copy()
+            # df = df.loc[df['descricao'].str.contains(r'APL[^\\b]APLIC[^\\b]AUT[^\\b]MAIS')==False].copy()
+            # df = df.loc[df['descricao'].str.contains(r'RES[^\\b]APLIC[^\\b]AUT[^\\b]MAIS')==False].copy()         
             
             print(f"TOTAL DE LINHAS PUSHOUT: {len(df)}", "\n")
 
@@ -167,7 +167,7 @@ def my_type_modal_finance(df, path, file, tipo_doc_extract ):
             from mygcptablefinfam import insert_df_stop
 
             print(f"SALDO / NEGATICO OU POSITIVO / STOP:{file}", "\n")
-            df = df.loc[df['descricao'].str.contains(r'SALDO[^\\b]+\w')].copy()
+            df = df.loc[(df['descricao'].str.contains(r'SALDO[^\\b]+\w|SDO[^\\b]+CTA\/+APL[^\\b]+\w'))].copy()
 
             print(f"TOTAL DE LINHAS STOP: {len(df)}", "\n")
 
