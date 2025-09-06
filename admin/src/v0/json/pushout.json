@@ -1,8 +1,0 @@
-[
-{"name": "tipo_custo", "type":"STRING", "mode":"nullable"},
-{"name": "custo", "type":"STRING", "mode":"nullable"},            
-{"name": "valor_custo", "type":"FLOAT", "mode":"nullable"},
-{"name": "dt_mes_base", "type":"DATE", "mode":"nullable"},
-{"name": "dt_custo", "type":"DATE", "mode":"nullable"},
-{"name": "process_time", "type":"TIMESTAMP", "mode":"nullable"} 
-]

@@ -1,0 +1,5 @@
+project = "devsamelo2"
+credentials_file = "/home/andre/.ssh/my-chave-gcp-devsamelo2.json"
+bucket = "projeto-terraform"
+prefix = "backend-staging-bq"
+region = "us-central1"

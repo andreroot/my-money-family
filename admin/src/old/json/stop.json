@@ -1,8 +1,0 @@
-[
-        
-    {"name": "descricao", "type": "STRING", "mode": "nullable"},
-    {"name": "saldo", "type": "FLOAT", "mode": "nullable"},
-    {"name": "dt_mes_base", "type": "DATE", "mode": "nullable"},
-    {"name": "dt_recebido", "type": "DATE", "mode": "nullable"} ,
-    {"name": "process_time", "type": "TIMESTAMP", "mode": "nullable"}
-]

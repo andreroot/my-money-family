@@ -1,0 +1,9 @@
+[
+    {"name": "tipo_custo_credito", "type": "STRING", "mode": "nullable"},
+    {"name": "custo_credito", "type": "STRING", "mode": "nullable"},
+    {"name": "valor_credito", "type": "FLOAT", "mode": "nullable"},
+    {"name": "valor_credito_parc", "type": "FLOAT", "mode": "nullable"},
+    {"name": "dt_mes_base", "type": "DATE", "mode": "nullable"},
+    {"name": "dt_credito", "type": "DATE", "mode": "nullable"} , 
+    {"name": "process_time", "type": "TIMESTAMP", "mode": "nullable"}   
+    ]
