@@ -1,1 +1,16 @@
-env/
+.env
+.venv
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.DS_Store
+.idea/
+.vscode/
+*.sqlite3
+admin/process/src/__pycache__/
+admin/process/src/*.sqlite3
+admin/process/src/.ipynb_checkpoints/
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup

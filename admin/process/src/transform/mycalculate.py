@@ -34,11 +34,13 @@ def calculate_prevanalytics(dfs, dfc, dfr):
             # print(value_m1)
             # value_m2 = func_saldo_retorativo(dt.datetime.now().month+2)
             # print(value_m2)
-
+            
+            # mes futuro aplico calculos dos meses passados
             if mes == 11:
-                # somar com 
+                # montar saldo do mes futuro com dados retroativos
                 value = value_m0+(func_saldo_inicial(dfs, 10)+func_recebido(dfr, 10)-func_custo(dfc, 10))
             elif mes == 12:
+                # montar saldo do mes futuro com dados retroativos
                 value = value_m0+(func_saldo_inicial(dfs, 10)+func_recebido(dfr, 10)-func_custo(dfc, 10))+(func_saldo_inicial(dfs, 11)+func_recebido(dfr, 11)-func_custo(dfc, 11))
             else:
                 value = (func_saldo_inicial(dfs, mes-1)+func_recebido(dfr, mes-1)-func_custo(dfc, mes-1))
