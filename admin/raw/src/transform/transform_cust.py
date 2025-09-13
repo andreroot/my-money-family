@@ -11,7 +11,8 @@ from gspread_dataframe import get_as_dataframe
 # conceito de push: empurrar algo, são os gastos empurrados para fora do caixa financeiro para algum destino, são o destino final do fluxo
 #
 def connect():
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '/home/andre/.ssh/my-chave-gcp-devsamelo2.json'
+    # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '/home/andre/.ssh/my-chave-gcp-devsamelo2.json'
+    # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '/app/.ssh/my-chave-gcp-devsamelo2.json'
     gc = gspread.service_account(filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
     return gc
 
@@ -102,7 +103,7 @@ def func_generate_fix_type_cust(df):
                                 ( "gas" if x["descricao"].find('DA  COMGAS')>=0 else
                                 ( "luz" if x["descricao"].find('DA  ELETROPAULO')>=0 else
                                 ( "boleto" if x["descricao"].find('PAG BOLETO  PAG TIT BANC')>=0 or x["descricao"].find('PAG BOLETO  CONDOMINIO')>=0 else
-                                ( "pessoal" if x["descricao"].find('PIX TRANSF  ANDRE')>=0 or x["descricao"].find('PIX TRANSF  Andre N')>=0 else
+                                ( "pessoal" if x["descricao"].find('PIX TRANSF  ANDRE')>=0 or x["descricao"].find('PIX TRANSF  Andre N')>=0 or x["descricao"].find('PIX QRS ANDRE NASCI')>=0 else
                                 ( "shopee-app" if x["descricao"].find('Pix Sbf Comercio')>=0 else
                                 ( "michelle-estetica" if x["descricao"].find('48.440.591 S-ct')>=0 else
                                 ("boticario" if x["descricao"].find('Hna')>=0 else

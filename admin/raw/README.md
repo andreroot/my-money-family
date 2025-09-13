@@ -1,57 +1,55 @@
 # ETL dos arquivos baixados do itau
 
-### RAW
+## RAW
+Execução do docker na AWS via Tasks ECS
 
-1. 
-    1. instalacao.sh
+**1. Processo de prepararação de docker image**
 
-        preparar ambiente para execução do etl
-        ./admin/raw/etl_sh/instalacao.sh 
+```bash
 
+executar deploy / gerar build da image
+raw/deploy_docker_ecs.sh
 
-    2. etl.sh
+```
 
-        gera um unico arquivos unidos dtodos os arquvios baixados mes a mes, com nome sugestivo de custo_ano_mes
+- arquivo baixados estao localmente são trasnferidos para S3
+- login no ecs e atualizar image na aws ecs
+- build image
+- criar tag latest
+- copia image para ecs
+- executa docker via task ecs: curl -X POST "https://4ebtfw1bec.execute-api.us-east-1.amazonaws.com/run" 
 
-        arquvoo baixaods estao localmente neste local:
-        C:\Users\andre\Documents\github\my-money-family\admin\etl\excel
+**2. Execução do docker**
 
-        - base extrato da conta corrente
-        ./admin/raw/etl_sh/etl.sh 
+```bash
 
-        - base custo cartão creditos
-        ./admin/raw/etl_sh/etlcred.sh 
+Inicio
+./execute.sh 
 
+    - base extrato da conta corrente
+    ./etl.sh 
 
-    3. main.py
+    - base custo cartão creditos
+    ./etlcred.sh 
 
-        import o arquivo para sheets online
+    - dentro da maq virtualenv 
+    python ./admin/raw/src/main.py 
+```
 
-        dentro da maq virtualenv 
-        python ./admin/raw/src/main.py 
+Gerando informações no sheets
+      
+ 
 
-    4. sheets online
+## PROCESS
+Execução local
 
-        gerado neste arquivo:
+**1. Transformação**
 
-        https://docs.google.com/spreadsheets/d/1UpB2k12Jy6yPkg0PHG-AVXTmQo_B2Wh5N-sFsdHL-N4/edit?gid=0#gid=0
+```bash
 
-        compartilhado: devsamelo-dev@devsamelo2.iam.gserviceaccount.com
+executar deploy / gerar build da image
+python ./admin/process/src/main.py 
 
-### PROCESS
+```
 
-1. 
-    1. main.py
-
-        import o arquivo para sheets online
-
-        dentro da maq virtualenv 
-        python ./admin/process/src/main.py 
-
-    2. sheets online
-
-        gerado neste arquivo:
-
-        https://docs.google.com/spreadsheets/d/1by76kJeADccF_ZIZnTSZcGd8TPJUYMo_zg021re5RLA/edit?gid=1194138400#gid=1194138400
-
-        compartilhado: devsamelo-dev@devsamelo2.iam.gserviceaccount.com
+Gerando informações no sheets

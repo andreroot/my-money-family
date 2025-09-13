@@ -11,7 +11,6 @@ from credencial.credencial_gcp import my_credencial
 
 
 def connect():
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '/home/andre/.ssh/my-chave-gcp-devsamelo2.json'
     gc = gspread.service_account(filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
     return gc

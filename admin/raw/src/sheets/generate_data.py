@@ -15,7 +15,7 @@ from transform.transform_cust import  func_generate_sheets_type_cust, func_gener
 from transform.transform_receb import func_transform_receb
 
 def connect():
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '/home/andre/.ssh/my-chave-gcp-devsamelo2.json'
+    # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '/app/.ssh/my-chave-gcp-devsamelo2.json'
     gc = gspread.service_account(filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
     return gc
@@ -23,7 +23,7 @@ def connect():
 def generate():
     
     # Leia o CSV
-    df = pd.read_csv("/home/andre/projetos/my-money-family/admin/raw/output/extrato_2025.csv")
+    df = pd.read_csv("/app/output/extrato_2025.csv")
 
     # Abra a planilha pelo nome
     sh = connect().open("extrato_2025")
@@ -41,7 +41,7 @@ def generate():
 def generate_cred():
     
     # Leia o CSV
-    df = pd.read_csv("/home/andre/projetos/my-money-family/admin/raw/output/extrato_cred_2025.csv")
+    df = pd.read_csv("/app/output/credito_2025.csv")
 
     # Abra a planilha pelo nome
     sh = connect().open("extrato_2025")

@@ -14,3 +14,4 @@ admin/process/src/.ipynb_checkpoints/
 .terraform.lock.hcl
 *.tfstate
 *.tfstate.backup
+/home/andre/projetos/my-money-family/admin/raw/my-chave-gcp-devsamelo2.json

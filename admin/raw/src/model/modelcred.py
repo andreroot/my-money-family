@@ -42,6 +42,6 @@ def model_data(df):
     # Agora você pode usar os objetos validados ou exportar novamente para CSV
     df_validado = pd.DataFrame([r.dict() for r in registros])
 
-    df_validado.to_csv("/home/andre/projetos/my-money-family/admin/raw/output/model_cred.csv", index=False)
+    df_validado.to_csv("/app/output/model_cred.csv", index=False)
 
     return df_validado
