@@ -21,7 +21,6 @@ RUN apt-get install wget -y && \
     apt-get install axel -y && \
     apt-get install python3-venv -y && \
     apt-get install python3-pip -y && \
-    apt-get install libreoffice -y && \
     pip3 install csvkit
 
 # instalação aws cli
@@ -55,14 +54,14 @@ RUN chown -R appuser:appgroup /app
 COPY requirements.txt .
 
 # Instalar dependências no sistema (não como user local)
-RUN pip install --no-cache-dir -r requirements.txt csvkit==1.0.7 xlrd==1.2.0 openpyxl gspread pandas gspread_dataframe
+RUN pip install --no-cache-dir -r requirements.txt csvkit==1.0.7 xlrd==1.2.0 openpyxl gspread pandas pandas-gbq gspread_dataframe
 
 # Copiar código fonte e scripts
 COPY src/ ./src/
 # copy shell script
-COPY etl_sh/ ./etl_sh/
+COPY process_sh/ ./process_sh/
 # Garantir que o entrypoint.sh seja executável
-RUN chmod +x ./etl_sh/*.sh
+RUN chmod +x ./process_sh/*.sh
 
 # credencial
 RUN mkdir -p .ssh
@@ -85,4 +84,4 @@ USER appuser
 # # Definir entrypoint
 ENTRYPOINT  ["bash"]
 
-CMD ["./etl_sh/execute.sh"]
+CMD ["./process_sh/execute.sh"]

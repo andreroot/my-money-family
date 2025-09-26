@@ -264,3 +264,150 @@ def calculate_prevanalytics(dfs, dfc, dfr):
     return df1_
 
     #-R$ 1.111,60	R$ 30.000,00	-R$ 5.527,41	R$ 23.360,99	R$ 23.360,99	October
+
+
+def criar_calendario(df):
+    df['week_br'] = pd.to_datetime(df["dt_custo"]).dt.day_name()
+    df['week_br'] = df.apply(lambda x: "segunda-feira" if x["week_br"]=="Monday" else 
+                                ("terça-feira" if x["week_br"]=="Tuesday" else 
+                                ("quarta-feira" if x["week_br"]=="Wednesday" else 
+                                ("quinta-feira" if x["week_br"]=="Thursday" else 
+                                ("sexta-feira" if x["week_br"]=="Friday" else 
+                                ("sabado" if x["week_br"]=="Saturday" else "domingo"))))), axis=1)
+
+    return df
+
+def construcao_tipo_custo(df):
+
+    df["tipo_custo_alt"]=df.apply(lambda x: ''.join(re.findall('^\w+',x["tipo_custo"])), axis=1)
+  
+    lista_tp=['#2024_2023','igreja','boleto','banco','claro','ajuda','emprestimo','cartao','net','financiamento','gas','luz','Taxa_banco','escola_futebol','juros','celular','transporte','transporte_pub','#2022','enel','carro','saque','comgas','oferta','sabesp','doação','aplicacao','seminario','cartão','creche','poupança','psicologa','ceforte','sptransp','escola','poupanca']
+
+    list_tp_alto=['financiamento','emprestimo','boleto','cartao','juros','banco','Taxa_banco','saque','poupanca']
+    list_tp_medio=['luz','gas','net','sabesp','claro']
+    list_tp_medio_n1=['pix', 'transporte', 'alimentacao','feira','mercado','padaria','transporte_pub','recargapay','cea','ifood','cabelereiro','farmacia','roupa','ajuda','pernambucanas','dora']
+    list_tp_invest=['picpay','inter','nubank','pagbank','nomad']# remover poupanca
+    list_tp_imprevisto=['pedreiro','consertotv','refil','flores','cartorio','shopmetro','lojaesportes','utensilios','app']
+    list_tp_lazer=['brinquedo-praia','lazer','casamento','cinema','brinquedo','passeio','futebol','escola_futebol','churrasco-pessoal','futebol_amigos']
+    list_tp_comercio=['material_construcao_banheiro','celular','eletrolux','pessoa','loja','cosmeticos','comercio','BAZAR','kalung','americanas',  'refil', 'comercio',  'kalung',  'loja', 'papelaria',  'presente',  'lojaesportes',  'brinquedo', 'amigosecreto', 'consumo', 'panetone', 'correio', 'chuteira', 'material_construcao_banheiro', 'eletrolux', 'consertotv', 'cinema',  'cosmeticos',  'shopmetro']
+    list_tp_carro=['porto_seguro','multa','uber','estacionamento','carro','pedagio','ipva','gasolina','mecanico','locadora']
+    list_tp_igreja=['igreja']
+    list_tp_pessoa=['rafael','ajuda','dora']
+
+
+    df["classificacao_custo"] = df.apply(lambda x: 'fixo' if [tp for tp in lista_tp if tp==x["tipo_custo_alt"]] else 'variado', axis=1)
+
+    df["area_custo"] = df.apply(lambda x: 'alto' if [tp for tp in list_tp_alto if tp==x["tipo_custo_alt"] ] else 
+                                ('medio' if [tp for tp in list_tp_medio if tp==x["tipo_custo_alt"]] else 
+                                ('medio_n1' if [tp for tp in list_tp_medio_n1 if tp==x["tipo_custo_alt"]] else 
+                                    ('invest' if [tp for tp in list_tp_invest if tp==x["tipo_custo_alt"]] else
+                                        ('imprevisto' if [tp for tp in list_tp_imprevisto if tp==x["tipo_custo_alt"]] else 
+                                        ('lazer' if [tp for tp in list_tp_lazer if tp==x["tipo_custo_alt"]] else 
+                                            ('comercio' if [tp for tp in list_tp_comercio if tp==x["tipo_custo_alt"]] else
+                                            ('carro' if [tp for tp in list_tp_carro if tp==x["tipo_custo_alt"]]  else 
+                                                ('igreja' if [tp for tp in list_tp_igreja if tp==x["tipo_custo_alt"]]  else 
+                                                ('poupanca' if x["tipo_custo_alt"]=='poupanca' else 'baixo'
+                                    ))))))))), axis=1)
+
+    return df
+
+
+def fake( dt_base, dt_custo, tipo_custo, custo, valor_custo):
+    #dfc.columns
+
+    import pandas as pd   
+    import datetime
+    from datetime import timedelta, date
+
+    dt_time_atual=datetime.datetime.now()
+    print(datetime.datetime.strftime(dt_time_atual, '%Y-%m-%d %T.%f'))
+
+    df_fake=pd.DataFrame()
+
+    df_fake = pd.DataFrame({
+        'tipo_custo':tipo_custo,
+        'custo': custo,
+        'valor_custo': valor_custo,
+        'dt_mes_base':[pd.Timestamp(datetime.datetime.strptime(dt_base, '%Y-%m-%d').date()).date() for x in range(1,len(tipo_custo)+1)],
+        'dt_custo':[pd.Timestamp((datetime.datetime.strptime(dt_custo, '%Y-%m-%d')).date()).date() for x in range(1,len(tipo_custo)+1)],
+        'process_time':[pd.Timestamp(datetime.datetime.strftime(dt_time_atual, '%Y-%m-%d %T.%f')) for x in range(1,len(tipo_custo)+1)]
+        })
+
+    df_fake=criar_calendario(df_fake)
+
+    # validacao 
+
+    nulos=df_fake[(df_fake["tipo_custo"].isnull())][['custo','valor_custo','dt_custo']].drop_duplicates().values.tolist()
+
+    if len(nulos):
+        print('verificar nulos:',nulos)
+        
+        df_fake=df_fake[~(df_fake["tipo_custo"].isnull())].copy()
+
+    df_fake = construcao_tipo_custo(df_fake)
+    #['tipo_custo','custo','valor_custo','dt_mes_base','dt_custo','tipo_custo_alt','classificacao_custo','area_custo']
+    #['tipo_custo', 'custo', 'valor_custo', 'dt_mes_base', 'dt_custo', 'tipo_custo_alt', 'classificacao_custo',       'area_custo']
+    return df_fake[['tipo_custo','custo','valor_custo','dt_mes_base','dt_custo','tipo_custo_alt','classificacao_custo','area_custo']]
+
+
+def process(query, flag_fake=False):
+
+    df = consulta_gcp(query)
+
+    df=criar_calendario(df)
+
+    # validacao 
+
+    nulos=df[(df["tipo_custo"].isnull())][['custo','valor_custo','dt_custo']].drop_duplicates().values.tolist()
+
+    if len(nulos):
+        print('verificar nulos:',nulos)
+        
+        df=df[~(df["tipo_custo"].isnull())].copy()
+
+    df = construcao_tipo_custo(df)
+
+    # tratar gasto pessoal
+    df['tipo_custo_alt'] = df.apply(lambda x: 'churrasco-pessoal' if x["custo"].find("ELECTRONATACADAO 06")>=0 and
+                                                                    x["dt_mes_base"].strftime('%Y-%m-%d')=='2024-09-01' and
+                                                                    x["dt_custo"].strftime('%Y-%m-%d')=='2024-09-02' and
+                                                                    x["valor_custo"]==468.25  else x['tipo_custo_alt'], axis=1)
+
+    df['tipo_custo'] = df.apply(lambda x: 'churrasco-pessoal' if x["custo"].find("ELECTRONATACADAO 06")>=0 and
+                                                                    x["dt_mes_base"].strftime('%Y-%m-%d')=='2024-09-01' and
+                                                                    x["dt_custo"].strftime('%Y-%m-%d')=='2024-09-02' and
+                                                                    x["valor_custo"]==468.25  else x['tipo_custo'], axis=1)
+
+    # tratar gasto pessoal
+    df['tipo_custo_alt'] = df.apply(lambda x: 'churrasco-futebolamigos' if x["custo"].find("ELECTRONATACADAO 06")>=0 and
+                                                                    x["dt_mes_base"].strftime('%Y-%m-%d')=='2024-12-01' and
+                                                                    x["dt_custo"].strftime('%Y-%m-%d')=='2024-12-13' and
+                                                                    x["valor_custo"]==657.10		  else x['tipo_custo_alt'], axis=1)
+
+    df['tipo_custo'] = df.apply(lambda x: 'churrasco-futebolamigos' if x["custo"].find("ELECTRONATACADAO 06")>=0 and
+                                                                    x["dt_mes_base"].strftime('%Y-%m-%d')=='2024-12-01' and
+                                                                    x["dt_custo"].strftime('%Y-%m-%d')=='2024-12-13' and
+                                                                    x["valor_custo"]==657.10	  else x['tipo_custo'], axis=1)
+
+
+    # tratar gasto pessoal
+    df['tipo_custo_alt'] = df.apply(lambda x: 'ceia-fimdeano' if (x["custo"].find("ELECTRONHIP BERGAMI")>=0 or x["custo"].find("ELECTRONATACADAO 06")>=0 or x["custo"].find("ELECTRONRS AVILA")>=0) and
+                                                                    x["dt_mes_base"].strftime('%Y-%m-%d')=='2024-12-01' and
+                                                                    x["dt_custo"].strftime('%Y-%m-%d') in ('2024-12-23','2024-12-24','2024-12-30','2024-12-31') and
+                                                                    x["valor_custo"] in (225.03,185.81,355.66,94.61)		  else x['tipo_custo_alt'], axis=1)
+
+    df['tipo_custo'] = df.apply(lambda x: 'ceia-fimdeano' if (x["custo"].find("ELECTRONHIP BERGAMI")>=0 or x["custo"].find("ELECTRONATACADAO 06")>=0 or x["custo"].find("ELECTRONRS AVILA")>=0) and
+                                                                    x["dt_mes_base"].strftime('%Y-%m-%d')=='2024-12-01' and
+                                                                    x["dt_custo"].strftime('%Y-%m-%d') in ('2024-12-23','2024-12-24','2024-12-30','2024-12-31') and
+                                                                    x["valor_custo"] in (225.03,185.81,355.66,94.61)		  else x['tipo_custo'], axis=1)
+    
+    df['tipo_custo_alt']=df.apply(lambda x: 'banco' if  x['custo'].find('TAR PACOTE ITAU')>=0 
+                                  else ('Taxa_banco' if x['custo'].find('IOF')>=0 
+                                        else ( 'juros' if x['custo'].find('JUROS LIMITE DA CONTA')>=0 else   x['tipo_custo_alt'])), axis=1)
+
+    df['tipo_custo']=df.apply(lambda x: 'banco' if  x['custo'].find('TAR PACOTE ITAU')>=0 
+                              else ('Taxa_banco' if x['custo'].find('IOF')>=0 
+                                    else ( 'juros' if x['custo'].find('JUROS LIMITE DA CONTA')>=0 else   x['tipo_custo'])), axis=1)
+
+
+    return df

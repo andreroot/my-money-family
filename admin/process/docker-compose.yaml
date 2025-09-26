@@ -1,0 +1,21 @@
+
+services:
+  process-my-cust:
+    container_name: mycustprocess
+    # image: n8nio/n8n
+    build:
+      context: .
+      dockerfile: Dockerfile   
+    env_file:
+      - .env
+    # volumes:
+    #   - ./output:/tmp/output
+    #   - ./etl_sh:/app/etl_sh
+    #   - ./src:/app/src
+    networks:
+      - my-network
+    restart: unless-stopped
+
+networks:
+  my-network:
+    driver: bridge

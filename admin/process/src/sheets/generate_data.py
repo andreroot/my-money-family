@@ -29,11 +29,11 @@ def generate_process(sheet_name="extrato_2025", tab_name="extract_cust_transform
 
     return df
 
-def analytics_sheets(df):
+def analytics_sheets(df, sheets="resumo financeiro", tab="previsao_plano_financeiro"):
     # Abra a planilha pelo nome
-    sh = connect().open("resumo financeiro")
+    sh = connect().open(sheets)
 
-    worksheet = sh.worksheet("previsao_plano_financeiro")  # ou sh.worksheet("NomeDaAba")
+    worksheet = sh.worksheet(tab)  # ou sh.worksheet("NomeDaAba")
     worksheet.clear() # Limpa a aba antes de escrever
 
     # Escreva no Google Sheets
@@ -41,4 +41,15 @@ def analytics_sheets(df):
 
     print(f"TOTAL DE LINHAS GERADAS NO SHEETS: {len(df)}", "\n")
 
-    return df
+
+def analytics_sheets_param(df, sheets="resumo financeiro", tab="custo_extract_all"):
+    # Abra a planilha pelo nome
+    sh = connect().open(sheets)
+
+    worksheet = sh.worksheet(tab)  # ou sh.worksheet("NomeDaAba")
+    worksheet.clear() # Limpa a aba antes de escrever
+
+    # Escreva no Google Sheets
+    set_with_dataframe(worksheet, df)
+
+    print(f"TOTAL DE LINHAS GERADAS NO SHEETS: {len(df)}", "\n")
