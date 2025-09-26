@@ -2,17 +2,18 @@
 
 ## Estrutura do projeto
 
-### 1. python
+### Container do Docker na AWS 🐋
 
 estrutura medallion 
 
     - admin/raw/src
     - admin/process/src
 
-gerar image docker e dar puhs na AWS
-    - admin/raw/deploy_docker_ecs.sh
+executa dentro de cada etapa do medalhao, criação do container e gerar na aws:
+    - raw/deploy_docker_ecs.sh
+    - process/deploy_docker_ecs.sh
 
-### 2. terraform
+### Terraform 🦔
 
 cria recursos na nuvem
 
@@ -22,28 +23,25 @@ cria recursos na nuvem
     - aws/medalion(S3)
 
 ```mermaid
-graph TD;
+graph LD;
     A[Executa curl] --> B[API Gateway];
     B --> C[Lambda aciona task ECS];
     C --> D[ECS processa dados];
-    D --> E[Grava dados no Bucket S3 Raw];
-    E --> F[Processamento Python];
-    F --> G[Grava dados no Google Sheets];
+    D -- Pega Bucket --> E[S3 Raw];
+    D -- Processamento --> F[Python];
+    D -- Grava dados --> G[Google Sheets];
 ```
 
-### 3. execução
+### Execução ✈️
 
 Execução do processo na AWS via Tasks ECS, acionado pelo lambda.
 
 <aside>
 💡
 
-executado via curl que aciona lambda
+executado via endpoint - aciona tarefa do ecs via lambda.
 
 *curl -X POST "https://4ebtfw1bec.execute-api.us-east-1.amazonaws.com/run"*
 
-aciona um task no ECS
-
-*necessario dar acesso ao ecs para manipular s3://medalion-cust
 
 </aside>
