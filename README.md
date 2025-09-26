@@ -23,13 +23,13 @@ cria recursos na nuvem
     - aws/medalion(S3)
 
 ```mermaid
-graph LD;
+graph LR;
     A[Executa curl] --> B[API Gateway];
     B --> C[Lambda aciona task ECS];
-    C --> D[ECS processa dados];
-    D -- Pega Bucket --> E[S3 Raw];
-    D -- Processamento --> F[Python];
-    D -- Grava dados --> G[Google Sheets];
+    C -- Execução container --> D[ECS];
+    D -- Pega bucket --> E[S3 Raw];
+    D -- Processamento py --> F[Python];
+    D -- Visualização dados --> G[Google Sheets];
 ```
 
 ### Execução ✈️
