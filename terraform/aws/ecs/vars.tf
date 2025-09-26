@@ -1,3 +1,8 @@
+variable "GIT_REPOSITORY_NAME" {
+    default = "pipeline-site-receita-s3"
+    type = string
+}
+
 variable "region" {
   default = "us-east-1"
   type    = string
