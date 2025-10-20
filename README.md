@@ -19,18 +19,12 @@ cria recursos na nuvem
 
     - aws/ecs
     - aws/ec2
-    - aws/lambda
+    - aws/lambda --> executar zip para compacatr pasta src:
+                        zip -r ../lambda.zip . | zip -g lambda_code.zip lambda_function.py
+                        no arquivo consta somente os .py
     - aws/medalion(S3)
 
-```mermaid
-graph LR;
-    A[Executa curl] --> B[API Gateway];
-    B --> C[Lambda aciona task ECS];
-    C -- Execução container --> D[ECS];
-    D -- Pega bucket --> E[S3 Raw];
-    D -- Processamento py --> F[Python];
-    D -- Visualização dados --> G[Google Sheets];
-```
+
 
 ### Execução ✈️
 
@@ -41,7 +35,19 @@ Execução do processo na AWS via Tasks ECS, acionado pelo lambda.
 
 executado via endpoint - aciona tarefa do ecs via lambda.
 
-*curl -X POST "https://4ebtfw1bec.execute-api.us-east-1.amazonaws.com/run"*
-
+*curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run"*
+curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run" \
+  -H "Content-Type: application/json" \
+  -d '{"ano": "2025"}'
 
 </aside>
+
+```mermaid
+graph LR;
+    A[Executa curl] --> B[API Gateway];
+    B --> C[Lambda aciona task ECS];
+    C -- Execução container --> D[ECS];
+    D -- Pega bucket --> E[S3 Raw];
+    D -- Processamento py --> F[Python];
+    D -- Visualização dados --> G[Google Sheets];
+```

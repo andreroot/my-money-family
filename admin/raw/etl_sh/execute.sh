@@ -1,19 +1,22 @@
 #!/bin/bash
 set -e
 
+ANO=$1
+echo "Ano recebido: $ANO"
+
 # Instalação completa do csvkit + dependências para Excel
 echo "🤖 Processo Medallion - RAW - Início da instalação 🐋"
 
 echo "🐧 Sheel Script - RAW Debito"
 ## EXECUTE DEBITO S3
-./etl_sh/etldebs3.sh
+./etl_sh/etldebs3.sh $ANO
 
 echo "🐧 Sheel Script - RAW Credito"
 ## EXECUTE CREDITO S3
-./etl_sh/etlcreds3.sh
+./etl_sh/etlcreds3.sh $ANO
 
 echo "🐼 Execução python do ETL RAW"
-python3 /app/src/main.py
+python3 /app/src/main.py $ANO
 
 
 # echo "🤖 Criação/Ativação da virtualenv para execução do processo RAW"

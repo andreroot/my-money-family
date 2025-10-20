@@ -1,8 +1,3 @@
-variable "GIT_REPOSITORY_NAME" {
-    default = "pipeline-site-receita-s3"
-    type = string
-}
-
 variable "region" {
   default = "us-east-1"
   type    = string
@@ -20,6 +15,16 @@ variable "vpc_security_group_ids" {
 
 variable "subnet_id" {
   default = "subnet-02a00650f067c6118"
+  type        = string
+}
+
+variable "nome_container" {
+  default = "meu-container"
+  type        = string
+}
+
+variable "nome_container_process" {
+  default = "meu-container-process"
   type        = string
 }
 

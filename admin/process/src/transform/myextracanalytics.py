@@ -16,10 +16,10 @@ def extract_analytics(df):
     list_dt=df[['data_base']].sort_values("data_base", ascending=True).drop_duplicates().values.tolist()
 
     def get_valor_custo(df, tp, dt):
-        return df[["valor_custo"]][ (df['tipo_custo']==tp)&(pd.to_datetime(df['data_base'])==dt)].sum().values.tolist()
+        return df[["valor_custo"]][ (df['dept_custo']==tp)&(pd.to_datetime(df['data_base'])==dt)].sum().values.tolist()
 
     # LISTAGEM DO TIPO DE CUSTO
-    list_tp=df[["tipo_custo"]].drop_duplicates().values.tolist()
+    list_tp=df[["dept_custo"]].drop_duplicates().values.tolist()
 
     arr_tp_ext=[]
 
@@ -41,7 +41,7 @@ def extract_analytics(df):
     
     for idx, rw in enumerate(list_tp):
 
-        valor_sum_anual = df[["valor_custo"]][ (df['tipo_custo']==rw[0])].sum().values.tolist() #.sort_values("valor_custo", ascending=False)
+        valor_sum_anual = df[["valor_custo"]][ (df['dept_custo']==rw[0])].sum().values.tolist() #.sort_values("valor_custo", ascending=False)
         valor_med_anual =  float(valor_sum_anual[0]/len(list_dt))
         
         # print(f"DEBUG: TIPO CUSTO: {rw[0]} - VALOR ANUAL: {valor_sum_anual} - VALOR MEDIO: {valor_med_anual} - DATA BASE {list_dt[0][0]}")

@@ -82,6 +82,6 @@ ENV PATH="/home/appuser/.local/bin:${PATH}"
 USER appuser
 
 # # Definir entrypoint
-ENTRYPOINT  ["bash"]
+ENTRYPOINT  [""]
 
-CMD ["./process_sh/execute.sh"]
+CMD [""]

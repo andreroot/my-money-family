@@ -18,6 +18,7 @@ class CustoSchema(BaseModel):
     def parse_data_base(cls, v):
         if isinstance(v, date):
             return v
+        print(v)
         return datetime.strptime(v, "%d/%m/%Y").date()
 
 def model_data(df):
@@ -36,12 +37,26 @@ def model_data(df):
 
     })
     
-    # Valide e converta cada linha para o modelo Pydantic
-    registros = [CustoSchema(**row) for row in df.to_dict(orient="records")]
+    print(df.columns)
+    
+    df = df.dropna(subset=['data_base'])
 
-    # Agora você pode usar os objetos validados ou exportar novamente para CSV
-    df_validado = pd.DataFrame([r.dict() for r in registros])
+    try:
+        # usuario = Usuario(nome=123, idade=25.5, email=None)
 
-    df_validado.to_csv("/app/output/model_cred.csv", index=False)
+        # Valide e converta cada linha para o modelo Pydantic
+        registros = [CustoSchema(**row) for row in df.to_dict(orient="records")]  
+        print(registros[0])
+        print(type(registros))
+        
+        # Agora você pode usar os objetos validados ou exportar novamente para CSV
+        df_validado = pd.DataFrame([r.dict() for r in registros])
 
-    return df_validado
+        df_validado.to_csv("./output/model_cred.csv", index=False)
+
+        return df_validado
+
+    except ValueError as e:
+        print(f"Erro de validação: {e}")
+        return None
+

@@ -84,10 +84,10 @@ def calculate_analytics(dfs, dfc, dfr):
     def func_recebido(dfr, mes):
         database = pd.Timestamp(f"2025-0{mes}-01") if mes<=9 else pd.Timestamp(f"2025-{mes}-01")
         # MES DO RECEBIMENTO DA RECISÃO DE CONTRATO
-        if mes==10:
-            value = dfr['valor_receb'].loc[(pd.to_datetime(dfr['data_base'])==database)].sum()+40000
-        else:
-            value = dfr['valor_receb'].loc[(pd.to_datetime(dfr['data_base'])==database)].sum()
+        # if mes==10:
+        #     value = dfr['valor_receb'].loc[(pd.to_datetime(dfr['data_base'])==database)].sum()
+
+        value = dfr['valor_receb'].loc[(pd.to_datetime(dfr['data_base'])==database)].sum()
         
         # print(f"DEBUG: func_recebido called for date {database}, returning {value}")
         return value

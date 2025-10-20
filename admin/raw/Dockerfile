@@ -12,7 +12,8 @@ ENV AWS_SECRET_ACCESS_KEY=
 ENV AWS_DEFAULT_REGION=us-east-1
 
 # Instalar dependências do sistema (opcional, útil para bash, curl etc.)
-RUN apt-get update && apt-get install -y
+RUN apt-get update && apt-get install -y libreoffice
+RUN apt-get install -y libreoffice-common libreoffice-calc
 
 # Install dependencies
 RUN apt-get install wget -y && \
@@ -21,7 +22,6 @@ RUN apt-get install wget -y && \
     apt-get install axel -y && \
     apt-get install python3-venv -y && \
     apt-get install python3-pip -y && \
-    apt-get install libreoffice -y && \
     pip3 install csvkit
 
 # instalação aws cli
@@ -82,7 +82,10 @@ ENV PATH="/home/appuser/.local/bin:${PATH}"
 # Switch to the new user
 USER appuser
 
-# # Definir entrypoint
-ENTRYPOINT  ["bash"]
+# # Definir entrypoint, recber paratâmetro ano no docker run e passar para o script 
+# Exemplo: docker run -it nome_da_imagem 2025
+# ENTRYPOINT ["bash", "./etl_sh/etldebs3.sh"]
+ENTRYPOINT [""]
 
-CMD ["./etl_sh/execute.sh"]
+# Comando padrão (pode ser sobrescrito no docker run)
+CMD [""]

@@ -42,24 +42,18 @@ class Main:
         # Faz o merge de todos os DataFrames gerados
         df_merge = pd.concat([df] + df_list_merge, ignore_index=True)
 
-        df_merge['valor_custo'] = df_merge.apply(lambda x: 1000 if (x['tipo_custo_alt']=='emprestimo' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-07-01') 
-                                                        else( 1400  if (x['tipo_custo_alt']=='emprestimo' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-08-01') 
-                                                            else( 1400  if (x['tipo_custo_alt']=='emprestimo' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-10-01')
-                                                else x['valor_custo'])), axis=1) 
+        df_merge['valor_custo'] = df_merge.apply(lambda x: 1000 if (x['tipo_custo_alt']=='emprestimo' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-11-01') 
+                                                        else( 1400  if (x['tipo_custo_alt']=='emprestimo' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-12-01') 
+                                                else x['valor_custo']), axis=1) 
 
         df_merge['valor_custo'] = df_merge.apply(lambda x: 130 if (x['tipo_custo_alt']=='escola_futebol' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-11-01') 
-                                                        else( 130  if (x['tipo_custo_alt']=='escola_futebol' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-10-01') 
                                                             else( 130  if (x['tipo_custo_alt']=='escola_futebol' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-12-01')
-                                                else x['valor_custo'])), axis=1) 
+                                                else x['valor_custo']), axis=1) 
 
 
-        df_merge['valor_custo'] = df_merge.apply(lambda x: 800 if (x['tipo_custo_alt']=='cartao' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-07-01') 
-                                                        else( 800  if (x['tipo_custo_alt']=='cartao' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-08-01') 
-                                                            else( 800  if (x['tipo_custo_alt']=='cartao' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-09-01')
-                                                                 else( 800  if (x['tipo_custo_alt']=='cartao' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-10-01')
-                                                                      else( 400  if (x['tipo_custo_alt']=='cartao' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-11-01')
-                                                                           else( 400  if (x['tipo_custo_alt']=='cartao' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-12-01')
-                                                else x['valor_custo']))))), axis=1)         
+        df_merge['valor_custo'] = df_merge.apply(lambda x: 2500 if (x['tipo_custo_alt']=='cartao' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-11-01') 
+                                                    else( 2000  if (x['tipo_custo_alt']=='cartao' and datetime.datetime.strftime(x['dt_mes_base'],"%Y-%m-%d")=='2025-12-01')
+                                                else x['valor_custo']), axis=1)         
         #print(df_merge[df_merge['tipo_custo_alt']=='emprestimo'].head(5))
         
         return df_merge

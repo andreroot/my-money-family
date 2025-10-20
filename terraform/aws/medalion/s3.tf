@@ -44,3 +44,34 @@ resource "aws_s3_object" "s3v2_processed" {
   force_destroy = true
 }
 
+resource "aws_s3_object" "s3bronze" {
+  key        = "bronze/"
+  bucket     = aws_s3_bucket.s3v2.id
+  #source     = "pathlocal/policy.json"
+  #kms_key_id = aws_kms_key.examplekms.arn
+  force_destroy = true
+}
+
+resource "aws_s3_object" "s3silver" {
+  key        = "silver/"
+  bucket     = aws_s3_bucket.s3v2.id
+  #source     = "pathlocal/policy.json"
+  #kms_key_id = aws_kms_key.examplekms.arn
+  force_destroy = true
+}
+
+resource "aws_s3_object" "s3gold" {
+  key        = "gold/"
+  bucket     = aws_s3_bucket.s3v2.id
+  #source     = "pathlocal/policy.json"
+  #kms_key_id = aws_kms_key.examplekms.arn
+  force_destroy = true
+}
+
+resource "aws_s3_object" "s3curated" {
+  key        = "curated/"
+  bucket     = aws_s3_bucket.s3v2.id
+  #source     = "pathlocal/policy.json"
+  #kms_key_id = aws_kms_key.examplekms.arn
+  force_destroy = true
+}

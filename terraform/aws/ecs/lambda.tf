@@ -14,6 +14,7 @@ resource "aws_lambda_function" "ecs_trigger" {
       TASK_DEFINITION_ARN  = aws_ecs_task_definition.app_task.arn
       SUBNETS              = var.subnet_id
       SECURITY_GROUPS      = var.vpc_security_group_ids
+      NOME_CONTAINER        = var.nome_container
     }
   }
 }

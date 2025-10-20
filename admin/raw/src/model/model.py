@@ -41,12 +41,30 @@ def model_data(df):
 
     # print(df.columns)
     
-    # Valide e converta cada linha para o modelo Pydantic
-    registros = [CustoSchema(**row) for row in df.to_dict(orient="records")]
 
-    # Agora você pode usar os objetos validados ou exportar novamente para CSV
-    df_validado = pd.DataFrame([r.dict() for r in registros])
 
-    df_validado.to_csv("/app/output/model.csv", index=False)
 
-    return df_validado
+    try:
+        # Valide e converta cada linha para o modelo Pydantic
+        registros = [CustoSchema(**row) for row in df.to_dict(orient="records")]
+        print(registros[0])
+        print(type(registros))
+
+        # Serialização para JSON (opcional)
+        # registros_serializados = [r.model_dump_json() for r in registros[0]]
+        # print(registros_serializados)
+
+        # Desserialização de JSON (opcional)
+        # registros_desserializados = [CustoSchema.model_validate_json(rj) for rj in registros_serializados]
+        # print(registros_desserializados)
+
+        # Agora você pode usar os objetos validados ou exportar novamente para CSV
+        df_validado = pd.DataFrame([r.dict() for r in registros])
+
+        df_validado.to_csv("./output/model.csv", index=False)
+
+        return df_validado
+
+    except ValueError as e:
+        print(f"Erro de validação: {e}")
+        return None

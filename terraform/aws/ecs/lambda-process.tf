@@ -5,8 +5,8 @@ resource "aws_lambda_function" "ecs_trigger_process" {
   runtime       = "python3.11"
   handler       = "index.lambda_handler"
 
-  filename         = "lambda.zip"
-  source_code_hash = filebase64sha256("lambda.zip")
+  filename         = "lambda_process.zip"
+  source_code_hash = filebase64sha256("lambda_process.zip")
 
   environment {
     variables = {
@@ -14,6 +14,8 @@ resource "aws_lambda_function" "ecs_trigger_process" {
       TASK_DEFINITION_ARN  = aws_ecs_task_definition.app_task_process.arn
       SUBNETS              = var.subnet_id
       SECURITY_GROUPS      = var.vpc_security_group_ids
+      NOME_CONTAINER        = var.nome_container_process
+
     }
   }
 }

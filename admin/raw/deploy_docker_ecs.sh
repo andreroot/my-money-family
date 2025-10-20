@@ -52,11 +52,13 @@ echo "   $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:$IMAGE_TAG
 
 # ==== ATUALIZA FONTES NO S3 s3://medalion-cust/raw/original ====
 echo "Atualizando arquivos no S3..."
-# aws s3 cp "/mnt/c/Users/andre/Documents/github/my-money-family/admin/etl/excel" "s3://medalion-cust/raw/original/" --recursive --exclude "*" --include "credito_2025_*.xls"
-# aws s3 cp "/mnt/c/Users/andre/Documents/github/my-money-family/admin/etl/excel" "s3://medalion-cust/raw/original/" --recursive --exclude "*" --include "custo_2025_*.xls"
+# aws s3 cp "/mnt/c/Users/andre/Documents/github/my-money-family/admin/etl/excel/credito/2021" "s3://medalion-cust/raw/original/" --recursive --exclude "*" --include "credito_2021_*.xls"
+# aws s3 cp "/mnt/c/Users/andre/Documents/github/my-money-family/admin/etl/excel/debito/2021" "s3://medalion-cust/raw/original/" --recursive --exclude "*" --include "custo_2021_*.xls"
 
 rm -rf /home/andre/projetos/my-money-family/admin/raw/my-chave-gcp-devsamelo2.json
 
 # ==== EXECUTE PIPELINE ====
 echo "Executando..."
-curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run"
+curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2021" \
+  -H "Content-Type: application/json" \
+  -d '{"ano": "2021"}'

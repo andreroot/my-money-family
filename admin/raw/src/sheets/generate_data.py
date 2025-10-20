@@ -20,13 +20,15 @@ def connect():
 
     return gc
 
-def generate():
+def generate(ano):
     
     # Leia o CSV
-    df = pd.read_csv("/app/output/extrato_2025.csv")
+    # /app/output/
+    # local: /home/andre/projetos/my-money-family/admin/raw/output/
+    df = pd.read_csv(f"./output/extrato_{ano}.csv")
 
     # Abra a planilha pelo nome
-    sh = connect().open("extrato_2025")
+    sh = connect().open(f"extrato_{ano}")
 
     worksheet = sh.worksheet("extrato")  # ou sh.worksheet("NomeDaAba")
     worksheet.clear() # Limpa a aba antes de escrever
@@ -38,13 +40,13 @@ def generate():
 
     return df
 
-def generate_cred():
+def generate_cred(ano):
     
     # Leia o CSV
-    df = pd.read_csv("/app/output/credito_2025.csv")
+    df = pd.read_csv(f"./output/credito_{ano}.csv")
 
     # Abra a planilha pelo nome
-    sh = connect().open("extrato_2025")
+    sh = connect().open(f"extrato_{ano}")
 
     worksheet = sh.worksheet("credito")  # ou sh.worksheet("NomeDaAba")
     worksheet.clear() # Limpa a aba antes de escrever
@@ -57,7 +59,7 @@ def generate_cred():
     return df
 
 # TRANSFORMACAO DO DADOS DE SALDO 
-def stop(df):
+def stop(df, ano):
 
     print(f"-->SALDO / NEGATICO OU POSITIVO / STOP", "\n")
 
@@ -68,7 +70,7 @@ def stop(df):
     })
 
     # Abra a planilha pelo nome
-    sh = connect().open("extrato_2025")
+    sh = connect().open(f"extrato_{ano}")
     worksheet = sh.worksheet("extract_saldo_transform")  # ou sh.worksheet("NomeDaAba")
 
     # Escreva no Google Sheets
@@ -78,7 +80,7 @@ def stop(df):
     print(f"TOTAL DE LINHAS STOP: {len(df)}", "\n")
 
 # TRANSFORMACAO DO DADOS DE CUSTO 
-def pushout(df):
+def pushout(df, ano):
 
     print(f"-->SAIDA / CUSTO / PUSHOUT", "\n")
 
@@ -95,7 +97,7 @@ def pushout(df):
     df = func_generate_depto_cust(df)
 
     # Abra a planilha pelo nome
-    sh = connect().open("extrato_2025")
+    sh = connect().open(f"extrato_{ano}")
     worksheet = sh.worksheet("extract_cust_transform")  # ou sh.worksheet("NomeDaAba")
 
     # Escreva no Google Sheets
@@ -122,7 +124,7 @@ def pushout(df):
 
 
 # TRANSFORMACAO DO DADOS DE RECEBIMENTO 
-def pulling(df):
+def pulling(df, ano):
 
     print(f"-->ENTRADA / RECEBIDOS / PULLING", "\n")
 
@@ -138,7 +140,7 @@ def pulling(df):
     })
 
     # Abra a planilha pelo nome
-    sh = connect().open("extrato_2025")
+    sh = connect().open(f"extrato_{ano}")
     worksheet = sh.worksheet("extract_receb_transform")  # ou sh.worksheet("NomeDaAba")
 
     # Escreva no Google Sheets
@@ -182,7 +184,7 @@ def generate_type_cust_none(df):
 
 
 # TRANSFORMACAO DO DADOS DE CUSTO 
-def pushout_cred(df):
+def pushout_cred(df, ano):
 
     print(f"-->SAIDA / CREDITO / PUSHOUT", "\n")
 
@@ -202,7 +204,7 @@ def pushout_cred(df):
     })
 
     # Abra a planilha pelo nome
-    sh = connect().open("extrato_2025")
+    sh = connect().open(f"extrato_{ano}")
     worksheet = sh.worksheet("extract_cred_transform")  # ou sh.worksheet("NomeDaAba")
 
     # Escreva no Google Sheets
