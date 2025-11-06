@@ -20,7 +20,7 @@ cria recursos na nuvem
     - aws/ecs
     - aws/ec2
     - aws/lambda --> executar zip para compacatr pasta src:
-                        zip -r ../lambda.zip . | zip -g lambda_code.zip lambda_function.py
+                        zip -r ../lambda.zip . | unzip -g lambda_code.zip lambda_function.py
                         no arquivo consta somente os .py
     - aws/medalion(S3)
 

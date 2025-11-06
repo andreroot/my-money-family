@@ -65,7 +65,10 @@ process/deploy_docker_ecs.sh
 - criar tag latest
 - copia image para ecs
 - executa docker via task ecs
-    curl -X POST "https://blgfx6i8j3.execute-api.us-east-1.amazonaws.com/run"
+    curl -X POST "https://blgfx6i8j3.execute-api.us-east-1.amazonaws.com/run?ano=2025" \
+    -H "Content-Type: application/json" \
+    -d '{"ano": "2022"}'
+
 
 **2. Execução da Transformação**
 

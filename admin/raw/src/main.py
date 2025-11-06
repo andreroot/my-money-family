@@ -10,7 +10,7 @@ from model.model import model_data
 from model.modelcred import model_data as model_data_cred
 
 # generate 
-from sheets.generate_data import generate, generate_cred, generate_type_cust_none, pushout, pulling, stop, pushout_cred
+from sheets.generate_data import generate_debito, generate_cred, generate_type_cust_none, pushout, pulling, stop, pushout_cred
 
 class Generate:
     
@@ -22,7 +22,7 @@ class Generate:
         # generate
         df = pd.DataFrame()
 
-        df = generate(ano)
+        df = generate_debito(ano)
 
         df = model_data(df)
 
@@ -57,27 +57,70 @@ if __name__=='__main__':
     m = Generate()
     ano = sys.argv[1]
 
+    type_doc = sys.argv[2]
+
     print(f"Ano recebido no main: {ano}")
+    print(f"Tipo de extrato recebido na body: {type_doc}")
 
-    # debito: custo, receber, saldo
-    dfd = pd.DataFrame()
-    dfd = m.main_debito(ano)
+    if type_doc=='debito':
 
-    # credito
-    dfc = pd.DataFrame()
-    dfc = m.main_credito(ano)
+        # debito: custo, receber, saldo
+        dfd = pd.DataFrame()
+        dfd = m.main_debito(ano)
 
-    # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
+        # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
 
-    with ProcessPoolExecutor(max_workers=4)  as executor:
-        # results = executor.map(lambda f: f.result(), tasks)
-        # for result in results:
-        #     print(result)
-        futures = [
-            executor.submit(pushout, dfd, ano),
-            executor.submit(pulling, dfd, ano),
-            executor.submit(stop, dfd, ano),
-            executor.submit(pushout_cred, dfc, ano)
-        ]
-        for future in futures:
-            print(future.result())
+        with ProcessPoolExecutor(max_workers=4)  as executor:
+            # results = executor.map(lambda f: f.result(), tasks)
+            # for result in results:
+            #     print(result)
+            futures = [
+                executor.submit(pushout, dfd, ano),
+                executor.submit(pulling, dfd, ano),
+                executor.submit(stop, dfd, ano),
+            ]
+            for future in futures:
+                print(future.result())
+
+    elif type_doc=='credito':
+        
+        # credito
+        dfc = pd.DataFrame()
+        dfc = m.main_credito(ano)
+
+        # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
+
+        with ProcessPoolExecutor(max_workers=4)  as executor:
+            # results = executor.map(lambda f: f.result(), tasks)
+            # for result in results:
+            #     print(result)
+            futures = [
+                executor.submit(pushout_cred, dfc, ano)
+            ]
+            for future in futures:
+                print(future.result())
+
+    else:
+
+        # debito: custo, receber, saldo
+        dfd = pd.DataFrame()
+        dfd = m.main_debito(ano)
+
+        # credito
+        dfc = pd.DataFrame()
+        dfc = m.main_credito(ano)
+
+        # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
+
+        with ProcessPoolExecutor(max_workers=4)  as executor:
+            # results = executor.map(lambda f: f.result(), tasks)
+            # for result in results:
+            #     print(result)
+            futures = [
+                executor.submit(pushout, dfd, ano),
+                executor.submit(pulling, dfd, ano),
+                executor.submit(stop, dfd, ano),
+                executor.submit(pushout_cred, dfc, ano)
+            ]
+            for future in futures:
+                print(future.result())

@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field, validator
 import pandas as pd
+import re
 from datetime import datetime, date
 
 class CustoSchema(BaseModel):
@@ -22,6 +23,39 @@ class CustoSchema(BaseModel):
             return v
         return datetime.strptime(v, "%d/%m/%Y").date()
 
+
+    @validator('valor_custo', 'valor_receb', 'valor_saldo', pre=True)
+    def parse_float(cls, v):
+        """
+        Aceita números, strings vazias, formatos BR (1.234,56), 'R$ 1.234,56' e parênteses para negativos.
+        Strings vazias -> 0.0 (ajuste se preferir None).
+        """
+        if v is None:
+            return 0.0
+        if isinstance(v, (int, float)):
+            return float(v)
+        s = str(v).strip()
+        if s == '':
+            return 0.0
+        # trata parênteses como negativo: (1.234,56)
+        neg = False
+        if s.startswith('(') and s.endswith(')'):
+            neg = True
+            s = s[1:-1].strip()
+        # remove símbolos de moeda e espaços
+        s = re.sub(r'[^\d,.\-]', '', s)
+        # se houver ambos . e , assume formato brasileiro (milhar '.' e decimal ',')
+        if '.' in s and ',' in s:
+            s = s.replace('.', '').replace(',', '.')
+        else:
+            # trocar vírgula decimal por ponto
+            s = s.replace(',', '.')
+        try:
+            val = float(s)
+        except Exception:
+            raise ValueError(f"Não foi possível converter '{v}' para float")
+        return -val if neg else val
+
 def model_data(df):
     # Carregue o CSV
     # df = pd.read_csv("output/extrato_2025.csv")
@@ -39,7 +73,8 @@ def model_data(df):
         "saldos (R$)": "valor_saldo"
     })
 
-    # print(df.columns)
+    print(df.columns)
+    print(df.dtypes)
     
 
 

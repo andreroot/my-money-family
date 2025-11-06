@@ -6,7 +6,7 @@ ANO=$1
 echo "Ano recebido: $ANO"
 
 # Caminho do bucket S3 e prefixo dos arquivos
-S3_BUCKET="s3://medalion-cust/raw"
+S3_BUCKET_RAW="s3://medalion-cust/raw"
 S3_PATTERN="custo_${ANO}_01" #s3://medalion-cust/raw/original/custo_2025_01.xls
 
 # Nome do CSV de saída
@@ -17,7 +17,7 @@ TMP="./output/temp.csv"
 > "$CSV_SAIDA"
 
 # Baixa arquivos do S3 para o diretório local
-aws s3 cp "$S3_BUCKET/original/" "./output/" --recursive --exclude "*" --include "custo_${ANO}_*.xls"
+aws s3 cp "$S3_BUCKET_RAW/original/" "./output/" --recursive --exclude "*" --include "custo_${ANO}_*.xls"
 sleep 5
 
 # Cabeçalho do primeiro arquivo
@@ -64,6 +64,8 @@ for file in ./output/custo_${ANO}_*.xls; do
     fi
 done
 
-aws s3 cp "$CSV_SAIDA" "$S3_BUCKET/output/extrato_${ANO}.csv"
+S3_BUCKET_BRONZE="s3://medalion-cust/bronze"
 
-echo "Conversão finalizada. Arquivo gerado: $S3_BUCKET/output/extrato_${ANO}.csv"
+aws s3 cp "$CSV_SAIDA" "$S3_BUCKET_BRONZE/extrato_${ANO}.csv"
+
+echo "Conversão finalizada. Arquivo gerado: $S3_BUCKET_BRONZE/extrato_${ANO}.csv"

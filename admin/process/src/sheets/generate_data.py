@@ -3,53 +3,30 @@ import pandas as pd
 import os
 import datetime as dt    
 
-import gspread
-from gspread_dataframe import set_with_dataframe, get_as_dataframe
 
-# Autenticação
-from credencial.credencial_gcp import my_credencial
-
-
-def connect():
-    gc = gspread.service_account(filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
-
-    return gc
-
-def generate_process(sheet_name="extrato_2025", tab_name="extract_cust_transform"):
+def generate_parquet_process(parquet_file: str = None, s3_options: dict = None):
  
-    # Abra a planilha pelo nome
-    sh = connect().open(sheet_name)
+    """
+    Se s3_path for fornecido, lê parquet diretamente do S3 e retorna o DataFrame.
+    Caso contrário, mantém o comportamento existente (ler do Google Sheets).
 
-    worksheet = sh.worksheet(tab_name)  # ou sh.worksheet("NomeDaAba")
+    Exemplo de chamada para S3:
+      generate_process(s3_path="s3://medalion-cust/processed/credito_2025.parquet")
 
-    # Lê os dados como DataFrame
-    df = get_as_dataframe(worksheet, evaluate_formulas=True)
+    Requisitos:
+      pip install pyarrow s3fs
+      Credenciais AWS pelo ambiente (AWS_* vars) ou role da instância/task.
+    """
 
-    print(f"TOTAL DE LINHAS EXTRATO: {len(df)}", "\n")
+    s3_path=f"s3://medalion-cust/processed/{parquet_file}.parquet"
+
+    if s3_path:
+        # leitura direta do parquet em S3 (pyarrow/s3fs)
+        # s3_options é um dict opcional para storage_options do pandas (ex: {"key": "...", "secret": "..."})
+        df = pd.read_parquet(s3_path, storage_options=s3_options or {}, engine="pyarrow")
+
+        print(f"TOTAL DE LINHAS (S3): {len(df)} / PATH: {s3_path}", "\n")
+        
 
     return df
 
-def analytics_sheets(df, sheets="resumo financeiro", tab="previsao_plano_financeiro"):
-    # Abra a planilha pelo nome
-    sh = connect().open(sheets)
-
-    worksheet = sh.worksheet(tab)  # ou sh.worksheet("NomeDaAba")
-    worksheet.clear() # Limpa a aba antes de escrever
-
-    # Escreva no Google Sheets
-    set_with_dataframe(worksheet, df)
-
-    print(f"TOTAL DE LINHAS GERADAS NO SHEETS: {len(df)}", "\n")
-
-
-def analytics_sheets_param(df, sheets="resumo financeiro", tab="custo_extract_all"):
-    # Abra a planilha pelo nome
-    sh = connect().open(sheets)
-
-    worksheet = sh.worksheet(tab)  # ou sh.worksheet("NomeDaAba")
-    worksheet.clear() # Limpa a aba antes de escrever
-
-    # Escreva no Google Sheets
-    set_with_dataframe(worksheet, df)
-
-    print(f"TOTAL DE LINHAS GERADAS NO SHEETS: {len(df)}", "\n")

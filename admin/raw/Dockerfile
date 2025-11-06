@@ -55,7 +55,7 @@ RUN chown -R appuser:appgroup /app
 COPY requirements.txt .
 
 # Instalar dependências no sistema (não como user local)
-RUN pip install --no-cache-dir -r requirements.txt csvkit==1.0.7 xlrd==1.2.0 openpyxl gspread pandas gspread_dataframe
+RUN pip install --no-cache-dir -r requirements.txt csvkit==1.0.7 xlrd==1.2.0
 
 # Copiar código fonte e scripts
 COPY src/ ./src/

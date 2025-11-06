@@ -9,6 +9,10 @@
 
 # cp ~/.ssh/my-chave-gcp-devsamelo2.json my-chave-gcp-devsamelo2.json
 
+# docker image ls
+
+# docker run -i -t <id image> /bin/bash
+
 #!/bin/bash
 set -e
 
@@ -59,6 +63,6 @@ rm -rf /home/andre/projetos/my-money-family/admin/raw/my-chave-gcp-devsamelo2.js
 
 # ==== EXECUTE PIPELINE ====
 echo "Executando..."
-curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2021" \
+curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2025&type_doc=debito" \
   -H "Content-Type: application/json" \
-  -d '{"ano": "2021"}'
+  -d '{"ano": "2025", "type_doc": "credito", "extension_file": "xls"}'

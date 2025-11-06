@@ -14,18 +14,33 @@ from transform.transform_cust import  func_generate_sheets_type_cust, func_gener
 
 from transform.transform_receb import func_transform_receb
 
+from sheets.generate_parquet import generate_parquet_analytics, generate_parquet_credito, generate_parquet_debito
+
 def connect():
     # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '/app/.ssh/my-chave-gcp-devsamelo2.json'
     gc = gspread.service_account(filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
     return gc
 
-def generate(ano):
+def generate_debito(ano):
     
     # Leia o CSV
     # /app/output/
     # local: /home/andre/projetos/my-money-family/admin/raw/output/
-    df = pd.read_csv(f"./output/extrato_{ano}.csv")
+    # df = pd.read_csv(f"./output/extrato_{ano}.csv")
+
+    df = pd.read_csv(f"./output/extrato_{ano}.csv",
+        sep=',',
+        encoding='utf-8',
+        parse_dates=['data_base'],
+        dayfirst=True,
+        infer_datetime_format=True,
+        keep_default_na=False
+        )
+
+    print(df.columns)
+
+    generate_parquet_debito(df, ano)
 
     # Abra a planilha pelo nome
     sh = connect().open(f"extrato_{ano}")
@@ -43,7 +58,21 @@ def generate(ano):
 def generate_cred(ano):
     
     # Leia o CSV
-    df = pd.read_csv(f"./output/credito_{ano}.csv")
+    # df = pd.read_csv(f"./output/credito_{ano}.csv")
+
+    df = pd.read_csv(f"./output/credito_{ano}.csv",
+        sep=';',
+        quotechar='"',
+        encoding='utf-8',
+        parse_dates=['data_base'],
+        dayfirst=True,
+        infer_datetime_format=True,
+        keep_default_na=False
+        )
+
+    print(df.columns)
+
+    generate_parquet_credito(df, ano)
 
     # Abra a planilha pelo nome
     sh = connect().open(f"extrato_{ano}")
@@ -68,6 +97,8 @@ def stop(df, ano):
     df = df.rename(columns={
         "dt_custo": "dt_receb"
     })
+
+    generate_parquet_analytics(df, f'stop_saldo_{ano}')
 
     # Abra a planilha pelo nome
     sh = connect().open(f"extrato_{ano}")
@@ -95,6 +126,8 @@ def pushout(df, ano):
     df = func_generate_fix_type_cust(df)
     df = func_generate_calender(df)
     df = func_generate_depto_cust(df)
+
+    generate_parquet_analytics(df, f'pushout_saida_{ano}')
 
     # Abra a planilha pelo nome
     sh = connect().open(f"extrato_{ano}")
@@ -138,6 +171,9 @@ def pulling(df, ano):
     df = df.rename(columns={
         "dt_custo": "dt_receb"
     })
+
+    generate_parquet_analytics(df, f'pulling_entrada_{ano}')
+
 
     # Abra a planilha pelo nome
     sh = connect().open(f"extrato_{ano}")
@@ -220,6 +256,8 @@ def pushout_cred(df, ano):
     else:
         print(f'Total tipos_encontrados:{len(df[(df["tipo_credito"].notnull())])} / tipos_nao_encontrados:{len(df[(df["tipo_credito"].isnull())])}\n')
 
+    generate_parquet_analytics(df, f'pushout_cred_{ano}')
+
     # Abra a planilha pelo nome
     sh = connect().open("depara_tipo_custo")
 
@@ -230,3 +268,4 @@ def pushout_cred(df, ano):
     set_with_dataframe(worksheet, df[(df["tipo_credito"].isnull())][["descricao"]])
 
     return df
+

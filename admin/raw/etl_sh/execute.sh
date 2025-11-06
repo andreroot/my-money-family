@@ -4,20 +4,45 @@ set -e
 ANO=$1
 echo "Ano recebido: $ANO"
 
+TYPE_DOC=$2
+echo "Tipo de documento: $TYPE_DOC"
+
 # Instalação completa do csvkit + dependências para Excel
 echo "🤖 Processo Medallion - RAW - Início da instalação 🐋"
 
-echo "🐧 Sheel Script - RAW Debito"
-## EXECUTE DEBITO S3
-./etl_sh/etldebs3.sh $ANO
+if [[ "$TYPE_DOC" == "debito" ]]; then
 
-echo "🐧 Sheel Script - RAW Credito"
-## EXECUTE CREDITO S3
-./etl_sh/etlcreds3.sh $ANO
+    echo "🐧 Sheel Script - RAW Debito"
+    ## EXECUTE DEBITO S3
+    ./etl_sh/ETLDeb_aws_s3.sh $ANO
 
-echo "🐼 Execução python do ETL RAW"
-python3 /app/src/main.py $ANO
+    echo "🐼 Execução python do ETL RAW"
+    python3 /app/src/main.py $ANO $TYPE_DOC
 
+elif [[ "$TYPE_DOC" == "credito" ]]; then
+
+    echo "🐧 Sheel Script - RAW Credito"
+    ## EXECUTE CREDITO S3
+    ./etl_sh/ETLCred_aws_s3.sh $ANO
+
+    echo "🐼 Execução python do ETL RAW"
+    python3 /app/src/main.py $ANO $TYPE_DOC
+
+else
+    echo "Não foi definido um Tipo de Documento valido."
+
+    echo "🐧 Sheel Script - RAW Debito"
+    ## EXECUTE DEBITO S3
+    ./etl_sh/ETLDeb_aws_s3.sh $ANO
+
+    echo "🐧 Sheel Script - RAW Credito"
+    ## EXECUTE CREDITO S3
+    ./etl_sh/ETLCred_aws_s3.sh $ANO
+
+    echo "🐼 Execução python do ETL RAW"
+    python3 /app/src/main.py $ANO 'all'
+    # exit 1
+fi
 
 # echo "🤖 Criação/Ativação da virtualenv para execução do processo RAW"
 
