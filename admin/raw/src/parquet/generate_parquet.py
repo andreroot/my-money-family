@@ -20,7 +20,7 @@ def generate_parquet_credito(df, ano):
 
     # escreve particionado no S3
     df.to_parquet(
-        f"s3://medalion-cust/processed/credito_{ano}.parquet",
+        f"s3://medalion-cust/silver/credito/credito_{ano}.parquet",
         engine="pyarrow",
         compression="snappy",
         index=False,
@@ -48,7 +48,7 @@ def generate_parquet_debito(df, ano):
 
     # escreve particionado no S3
     df.to_parquet(
-        f"s3://medalion-cust/processed/extrato_{ano}.parquet",
+        f"s3://medalion-cust/silver/debito/extrato_{ano}.parquet",
         engine="pyarrow",
         compression="snappy",
         index=False,
@@ -57,11 +57,11 @@ def generate_parquet_debito(df, ano):
     )
 
 
-def generate_parquet_analytics(df, file):
+def generate_parquet_analytics(df, tipo_analitico, file):
 
     # escreve particionado no S3
     df.to_parquet(
-        f"s3://medalion-cust/processed/{file}.parquet",
+        f"s3://medalion-cust/silver/analytics_{tipo_analitico}/{file}.parquet",
         engine="pyarrow",
         compression="snappy",
         index=False,

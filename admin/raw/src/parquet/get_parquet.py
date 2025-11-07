@@ -1,10 +1,11 @@
 
+
+
 import pandas as pd
 import os
 import datetime as dt    
 
-
-def generate_parquet_process(parquet_file: str = None, s3_options: dict = None, table_name: str = None) -> pd.DataFrame:
+def get_parquet_process(parquet_file: str = None, tipo_docu: str = None, s3_options: dict = None) -> pd.DataFrame:
  
     """
     Se s3_path for fornecido, lê parquet diretamente do S3 e retorna o DataFrame.
@@ -18,7 +19,7 @@ def generate_parquet_process(parquet_file: str = None, s3_options: dict = None, 
       Credenciais AWS pelo ambiente (AWS_* vars) ou role da instância/task.
     """
 
-    s3_path=f"s3://medalion-cust/processed/debito/{parquet_file}.parquet"
+    s3_path=f"s3://medalion-cust/processed/{tipo_docu}/{parquet_file}.parquet"
 
     if s3_path:
         # leitura direta do parquet em S3 (pyarrow/s3fs)
@@ -29,4 +30,3 @@ def generate_parquet_process(parquet_file: str = None, s3_options: dict = None, 
         
 
     return df
-

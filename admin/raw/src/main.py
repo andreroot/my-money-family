@@ -3,14 +3,16 @@ import os
 import sys
 import datetime as dt    
 
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 
 # model
 from model.model import model_data
 from model.modelcred import model_data as model_data_cred
 
 # generate 
-from sheets.generate_data import generate_debito, generate_cred, generate_type_cust_none, pushout, pulling, stop, pushout_cred
+from sheets.get_data import read_parquet_debito as generate_debito
+from sheets.get_data import read_parquet_credito as generate_cred
+from sheets.generate_data_analytics import stop, pushout, pushout_cred, pulling
 
 class Generate:
     
@@ -42,7 +44,7 @@ class Generate:
         dfc = pd.DataFrame()
 
         dfc = generate_cred(ano)
-        print(dfc.head())
+
         dfc = model_data_cred(dfc)
 
         now = dt.datetime.now()
@@ -66,18 +68,21 @@ if __name__=='__main__':
 
         # debito: custo, receber, saldo
         dfd = pd.DataFrame()
+        
         dfd = m.main_debito(ano)
+
+        # dfd = generate_debito(ano)
 
         # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
 
-        with ProcessPoolExecutor(max_workers=4)  as executor:
+        with ThreadPoolExecutor(max_workers=3)  as executor:
             # results = executor.map(lambda f: f.result(), tasks)
             # for result in results:
             #     print(result)
             futures = [
                 executor.submit(pushout, dfd, ano),
                 executor.submit(pulling, dfd, ano),
-                executor.submit(stop, dfd, ano),
+                executor.submit(stop, dfd, ano)
             ]
             for future in futures:
                 print(future.result())
@@ -90,7 +95,7 @@ if __name__=='__main__':
 
         # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
 
-        with ProcessPoolExecutor(max_workers=4)  as executor:
+        with ThreadPoolExecutor(max_workers=4)  as executor:
             # results = executor.map(lambda f: f.result(), tasks)
             # for result in results:
             #     print(result)
@@ -112,7 +117,7 @@ if __name__=='__main__':
 
         # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
 
-        with ProcessPoolExecutor(max_workers=4)  as executor:
+        with ThreadPoolExecutor(max_workers=4)  as executor:
             # results = executor.map(lambda f: f.result(), tasks)
             # for result in results:
             #     print(result)

@@ -7,7 +7,7 @@ import pandas as pd
 from transform.mycalculateanalytics import calculate_analytics_sheets
 from transform.myextracanalytics import extract_analytics_sheets
 
-from sheets.generate_data import generate_process as generate
+from sheets.generate_data import generate_parquet_process as generate
 
 from concurrent.futures import ThreadPoolExecutor, as_completed, ProcessPoolExecutor
 import time
