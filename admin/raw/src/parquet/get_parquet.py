@@ -19,7 +19,7 @@ def get_parquet_process(parquet_file: str = None, tipo_docu: str = None, s3_opti
       Credenciais AWS pelo ambiente (AWS_* vars) ou role da instância/task.
     """
 
-    s3_path=f"s3://medalion-cust/processed/{tipo_docu}/{parquet_file}.parquet"
+    s3_path=f"s3://medalion-cust/silver/{tipo_docu}/{parquet_file}.parquet"
 
     if s3_path:
         # leitura direta do parquet em S3 (pyarrow/s3fs)

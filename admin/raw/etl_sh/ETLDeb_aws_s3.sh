@@ -20,16 +20,6 @@ TMP="./output/temp.csv"
 aws s3 cp "$S3_BUCKET_RAW/original/" "./output/" --recursive --exclude "*" --include "custo_${ANO}_*.xls"
 sleep 5
 
-# Cabeçalho do primeiro arquivo
-for file in ./output/custo_${ANO}_01.xls; do
-  echo "Pegar os nomes de colunas do primeiro arquivo $file..."
-  in2csv --sheet "Lançamentos" --skip-lines 8 "$file" | head -n 1 > "$TMP"
-  awk 'NR==1 {print $0",nome_arquivo,data_base"} NR>1' "$TMP" >> "$CSV_SAIDA"
-  rm "$TMP"
-done
-
-sleep 5
-
 
 # Loop pelos arquivos baixados do S3
 for file in ./output/custo_${ANO}_*.xls; do
@@ -55,6 +45,20 @@ for file in ./output/custo_${ANO}_*.xls; do
       fi
       rm -f ./output/error.log
 
+      sleep 5
+
+      # Cabeçalho do primeiro arquivo
+      # for file in ./output/custo_${ANO}_01.xls; do
+      if [[ "$file" == "./output/custo_${ANO}_01.xls" ]]; then
+        echo "Pegar os nomes de colunas do primeiro arquivo $file..."
+        in2csv --sheet "Lançamentos" --skip-lines 8 "$file" | head -n 1 > "$TMP"
+        awk 'NR==1 {print $0",nome_arquivo,data_base"} NR>1' "$TMP" >> "$CSV_SAIDA"
+        rm "$TMP"
+      fi
+      # done
+
+      sleep 5
+
       echo "Convertendo $file..."
       data_base=$(echo "$file" | grep -oP '\d{4}_\d{2}' | awk -F'_' '{printf "01/%s/%s\n", $2, $1}')
       in2csv --sheet "Lançamentos" --skip-lines 8 "$file" | tail -n +1 > "$TMP"
@@ -63,6 +67,8 @@ for file in ./output/custo_${ANO}_*.xls; do
 
     fi
 done
+
+
 
 S3_BUCKET_BRONZE="s3://medalion-cust/bronze"
 

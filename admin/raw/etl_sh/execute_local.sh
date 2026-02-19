@@ -1,4 +1,6 @@
 #!/bin/bash
+# export GOOGLE_APPLICATION_CREDENTIALS=~/.ssh/my-chave-gcp-devsamelo2.json
+
 set -e
 
 ANO=$1
@@ -17,7 +19,7 @@ if [[ "$TYPE_DOC" == "debito" ]]; then
     ./etl_sh/ETLDeb_aws_s3.sh $ANO
 
     echo "🐼 Execução python do ETL RAW"
-    python3 /app/src/main.py $ANO $TYPE_DOC
+    python3 ./src/main.py $ANO $TYPE_DOC
 
 elif [[ "$TYPE_DOC" == "credito" ]]; then
 
@@ -44,7 +46,7 @@ else
     ./etl_sh/ETLCred_aws_s3.sh $ANO
 
     echo "🐼 Execução python do ETL RAW"
-    python3 /app/src/main.py $ANO 'all'
+    python3 ./src/main.py $ANO 'all'
     # exit 1
 fi
 
@@ -64,7 +66,7 @@ fi
 # source venv/bin/activate
 
 # echo "🚀 Instalando pacotes com requirements.txt..."
-# pip3 install -r /app/requirements.txt
+# pip3 install -r ./requirements.txt
 
 # echo "🚀 Instalando csvkit..."
 
@@ -85,8 +87,8 @@ fi
 
 # echo "🐧 Sheel Script - RAW Debito"
 
-# # chown -R appuser:appgroup /app/output/original
-# # chmod -R 775 /app/output/original
+# # chown -R appuser:appgroup ./output/original
+# # chmod -R 775 ./output/original
 
 # ## EXECUTE DEBITO S3
 # ./etl_sh/etldebs3.sh
@@ -96,5 +98,5 @@ fi
 # ./etl_sh/etlcreds3.sh
 
 # echo "🐼 Execução python do ETL RAW"
-# python3 /app/src/main.py
+# python3 ./src/main.py
 #!/bin/bash -c 'for file in /app/output/original/custo_2025_*.xls; do if [[ -f "$file" ]]; then echo "Convertendo $file..." ; fi ;done'

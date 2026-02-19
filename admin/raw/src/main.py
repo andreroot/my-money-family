@@ -9,9 +9,11 @@ from concurrent.futures import ThreadPoolExecutor
 from model.model import model_data
 from model.modelcred import model_data as model_data_cred
 
-# generate 
-from sheets.get_data import read_parquet_debito as generate_debito
-from sheets.get_data import read_parquet_credito as generate_cred
+# generate ler arquivo local csv ou sheets
+from getdata.get_data import read_csv_debito as generate_debito
+from getdata.get_data import read_csv_credito as generate_cred
+
+# gerar arquivos parquet baseados nos arquivos csv
 from sheets.generate_data_analytics import stop, pushout, pushout_cred, pulling
 
 class Generate:
@@ -26,24 +28,27 @@ class Generate:
 
         df = generate_debito(ano)
 
-        df = model_data(df)
-
-        df["valor_custo"] = df["valor_custo"].fillna(0)
-        df["valor_saldo"] = df["valor_saldo"].fillna(0)
+        dfd = model_data(df)
+        if dfd is not None:
+            dfd["valor_custo"] = dfd["valor_custo"].fillna(0)
+            dfd["valor_saldo"] = dfd["valor_saldo"].fillna(0)
+            # ... resto do processamento ...
+        else:
+            print("Erro ao validar dados, DataFrame não foi criado.")    
 
         now = dt.datetime.now()
         dt_process = dt.datetime.fromtimestamp(dt.datetime.timestamp(now))
 
-        df["process_time"] = dt_process #.strftime("%Y-%m-%d %H:%M:%S.%f %z")
+        dfd["process_time"] = dt_process #.strftime("%Y-%m-%d %H:%M:%S.%f %z")
 
-        return df
+        return dfd
     
-    def main_credito(self, ano):
+    def main_credito(self, ano, flag_unir):
 
         # generate
         dfc = pd.DataFrame()
 
-        dfc = generate_cred(ano)
+        dfc = generate_cred(ano, flag_unir)
 
         dfc = model_data_cred(dfc)
 
@@ -58,12 +63,11 @@ if __name__=='__main__':
 
     m = Generate()
     ano = sys.argv[1]
-
     type_doc = sys.argv[2]
 
     print(f"Ano recebido no main: {ano}")
     print(f"Tipo de extrato recebido na body: {type_doc}")
-
+    
     if type_doc=='debito':
 
         # debito: custo, receber, saldo
@@ -84,14 +88,22 @@ if __name__=='__main__':
                 executor.submit(pulling, dfd, ano),
                 executor.submit(stop, dfd, ano)
             ]
-            for future in futures:
-                print(future.result())
+            for i, future in enumerate(futures, 1):
+                status = "running" if future.running() else "done" if future.done() else "pending"
+                print(f"Tarefa {i}: status = {status}", "\n")
+                if future.done():
+                    if future.exception():
+                        print(f"Tarefa {i}: erro -> {future.exception()}", "\n")
 
     elif type_doc=='credito':
         
+        
         # credito
         dfc = pd.DataFrame()
-        dfc = m.main_credito(ano)
+        if ano=='2026':
+            dfc = m.main_credito(ano, True)
+        else:
+            dfc = m.main_credito(ano, False)
 
         # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
 
@@ -102,8 +114,12 @@ if __name__=='__main__':
             futures = [
                 executor.submit(pushout_cred, dfc, ano)
             ]
-            for future in futures:
-                print(future.result())
+            for i, future in enumerate(futures, 1):
+                status = "running" if future.running() else "done" if future.done() else "pending"
+                print(f"Tarefa {i}: status = {status}", "\n")
+                if future.done():
+                    if future.exception():
+                        print(f"Tarefa {i}: erro -> {future.exception()}", "\n")
 
     else:
 
@@ -127,5 +143,9 @@ if __name__=='__main__':
                 executor.submit(stop, dfd, ano),
                 executor.submit(pushout_cred, dfc, ano)
             ]
-            for future in futures:
-                print(future.result())
+            for i, future in enumerate(futures, 1):
+                status = "running" if future.running() else "done" if future.done() else "pending"
+                print(f"Tarefa {i}: status = {status}", "\n")
+                if future.done():
+                    if future.exception():
+                        print(f"Tarefa {i}: erro -> {future.exception()}", "\n")

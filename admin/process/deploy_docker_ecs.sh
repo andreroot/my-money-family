@@ -7,6 +7,8 @@
 
 # docker push <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/meu-app:latest
 
+# export GOOGLE_APPLICATION_CREDENTIALS=~/.ssh/my-chave-gcp-devsamelo2.json
+
 # cp ~/.ssh/my-chave-gcp-devsamelo2.json my-chave-gcp-devsamelo2.json
 
 #!/bin/bash
@@ -54,6 +56,7 @@ echo "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:$IMAGE_TAG"
 # ==== ATUALIZA FONTES NO S3 s3://medalion-cust/raw/original ====
 echo "Atualizando arquivos no S3..."
 rm -rf /home/andre/projetos/my-money-family/admin/process/my-chave-gcp-devsamelo2.json
+
 
 # ==== EXECUTE PIPELINE ====
 echo "Executando..."
