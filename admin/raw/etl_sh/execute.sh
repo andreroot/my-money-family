@@ -1,4 +1,5 @@
 #!/bin/bash
+# export GOOGLE_APPLICATION_CREDENTIALS=~/.ssh/my-chave-gcp-devsamelo2.json
 set -e
 
 ANO=$1
@@ -30,7 +31,7 @@ elif [[ "$TYPE_DOC" == "credito" ]]; then
     ./etl_sh/ETLCred_aws_s3.sh $ANO $TIPO_CRED
 
     echo "🐼 Execução python do ETL RAW"
-    python3 ./src/main.py $ANO $TYPE_DOC
+    python3 /app/src/main.py $ANO $TYPE_DOC
 
 else
     echo "Não foi definido um Tipo de Documento valido."

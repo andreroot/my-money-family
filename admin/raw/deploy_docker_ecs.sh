@@ -72,6 +72,10 @@ curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=202
   -H "Content-Type: application/json" \
   -d '{"ano": "2026", "type_doc": "debito", "extension_file": "xls"}'
 
-curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2026&type_doc=debito" \
+curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2026&type_doc=credito&type_cred=uniclass_signature" \
   -H "Content-Type: application/json" \
-  -d '{"ano": "2026", "type_doc": "debito", "extension_file": "xls"}'
+  -d '{"ano": "2026", "type_doc": "credito", "type_cred": "uniclass_signature",   "extension_file": "xls"}'
+
+curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2026&type_doc=credito&type_cred=uniclass_black" \
+  -H "Content-Type: application/json" \
+  -d '{"ano": "2026", "type_doc": "credito", "type_cred": "uniclass_black",   "extension_file": "xls"}'

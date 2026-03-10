@@ -7,6 +7,7 @@ from parquet.generate_parquet import generate_parquet_credito, generate_parquet_
 #ler paqruqte gerado
 from parquet.get_parquet import get_parquet_process
 from sheets.generate_sheets import generate_analytics_sheets_deb, generate_analytics_sheets_cred
+import subprocess
 
 def read_csv_debito(ano):
     
@@ -39,6 +40,19 @@ def read_csv_union_credito(ano):
     
     # Leia o CSV
     # df = pd.read_csv(f"./output/credito_{ano}.csv")
+
+    # Caminho e nome do arquivo no S3
+    s3_path1 = f"s3://medalion-cust/bronze/credito_uniclass_signature_{ano}.csv"
+    local_path1 = f"./output/credito_uniclass_signature_{ano}.csv"
+
+    s3_path2 = f"s3://medalion-cust/bronze/credito_uniclass_black_{ano}.csv"
+    local_path2 = f"./output/credito_uniclass_black_{ano}.csv"
+
+    # Baixa os arquivos do S3 se não existirem localmente
+    if not os.path.exists(local_path1):
+        subprocess.run(["aws", "s3", "cp", s3_path1, local_path1], check=True)
+    if not os.path.exists(local_path2):
+        subprocess.run(["aws", "s3", "cp", s3_path2, local_path2], check=True)
 
     # v2 - leitura de 2 csv e unir num unico df
     # df1 - uniclass_signature 
