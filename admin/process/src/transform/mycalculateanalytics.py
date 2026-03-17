@@ -137,13 +137,13 @@ def calculate_analytics(ano, dfs, dfc, dfr):
     # list_mes = [dt.date.strftime(pd.Timestamp(f"2025-0{mes}-01"),"%B") if mes<=9 else dt.date.strftime(pd.Timestamp(f"2025-{mes}-01"),"%B") for mes in range(1,3)]
 
     data_json_1={
-        'saldo_inicial': [calculate_saldo(dfs, dfc, dfr, ano, mes) for mes in range(1,2)],
+        'saldo_inicial': [calculate_saldo(dfs, dfc, dfr, ano, mes) for mes in range(1,4)],
         # 'saldo_inicial_prev': [calculate_saldo(dfs, dfc, dfr, mes) for mes in range(1,13)],
-        'entrada':[ func_recebido(dfr, ano, mes) for mes in range(1,2)],
-        'saida':[ func_custo(dfc, ano, mes)*-1 for mes in range(1,2) ],
-        'saldo_final':[func_saldo_final(dfs, dfc, dfr, ano, mes) for mes in range(1,2)],
+        'entrada':[ func_recebido(dfr, ano, mes) for mes in range(1,4)],
+        'saida':[ func_custo(dfc, ano, mes)*-1 for mes in range(1,4) ],
+        'saldo_final':[func_saldo_final(dfs, dfc, dfr, ano, mes) for mes in range(1,4)],
         # 'saldo_final_prev':[func_saldo_final(dfs, dfc, dfr, mes) for mes in range(1,13)],
-        'mes_base':[dt.date.strftime(pd.Timestamp(f"{ano}-0{mes}-01"),"%B") if mes<=9 else dt.date.strftime(pd.Timestamp(f"{ano}-{mes}-01"),"%B") for mes in range(1,2)]
+        'mes_base':[dt.date.strftime(pd.Timestamp(f"{ano}-0{mes}-01"),"%B") if mes<=9 else dt.date.strftime(pd.Timestamp(f"{ano}-{mes}-01"),"%B") for mes in range(1,4)]
     }
 
     # data_json_1={

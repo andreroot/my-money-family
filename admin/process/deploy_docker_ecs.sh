@@ -60,6 +60,6 @@ rm -rf /home/andre/projetos/my-money-family/admin/process/my-chave-gcp-devsamelo
 
 # ==== EXECUTE PIPELINE ====
 echo "Executando..."
-curl -X POST "https://blgfx6i8j3.execute-api.us-east-1.amazonaws.com/run?ano=2025" \
+curl -X POST "https://blgfx6i8j3.execute-api.us-east-1.amazonaws.com/run?ano=2026" \
   -H "Content-Type: application/json" \
-  -d '{"ano": "2025"}'
+  -d '{"ano": "2026"}'
