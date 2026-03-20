@@ -42,7 +42,7 @@ def lambda_handler(event, context):
                         {'name': 'ANO', 'value': ano}
                     ],
                     # Se quiser passar argumentos para o CMD:
-                    'command': ['bash', './process_sh/execute.sh', '']
+                    'command': ['bash', './process_sh/execute.sh', ano]
                 }
             ]
         }

@@ -83,6 +83,7 @@ def pushout_cred(df, ano):
 
     print(f"-->SAIDA / CREDITO / PUSHOUT", "\n")
 
+    df = df.loc[df['valor_credito'] > 0].copy()
 
     # transform dados + colunas
     df = func_generate_sheets_type_cust(df)
@@ -97,8 +98,6 @@ def pushout_cred(df, ano):
         "area_custo": "area_credito"
 
     })
-
-    df = df.loc[df['valor_credito'] > 0].copy()
 
     generate_parquet_analytics(df, 'pushout_cred', f'extract_cred_transform_{ano}')
 

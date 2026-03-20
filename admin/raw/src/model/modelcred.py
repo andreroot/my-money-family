@@ -37,7 +37,7 @@ def model_data(df):
 
     })
     
-    print(df.columns)
+    # print(df.columns)
     
     df = df.dropna(subset=['data_base'])
 
@@ -46,8 +46,8 @@ def model_data(df):
 
         # Valide e converta cada linha para o modelo Pydantic
         registros = [CustoSchema(**row) for row in df.to_dict(orient="records")]  
-        print(registros[0])
-        print(type(registros))
+        # print(registros[0])
+        # print(type(registros))
         
         # Agora você pode usar os objetos validados ou exportar novamente para CSV
         df_validado = pd.DataFrame([r.dict() for r in registros])

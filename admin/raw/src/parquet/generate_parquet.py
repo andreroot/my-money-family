@@ -40,9 +40,11 @@ def generate_parquet_debito(df, ano):
     #     keep_default_na=False
     #     )
 
-    # print(df.columns)
+    print(df.columns)
 
     # opcional: adiciona year/month para particionamento
+    print(df)
+    df['data_base'] = pd.to_datetime(df['data_base'], dayfirst=True, errors='coerce')
     df['year'] = df['data_base'].dt.year
     df['month'] = df['data_base'].dt.month
 

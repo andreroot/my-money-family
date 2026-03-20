@@ -15,6 +15,7 @@ def lambda_handler(event, context):
     ano = body['ano']
     extension_file = body['extension_file']
     type_doc = body['type_doc']
+    
 
     print(f"Ano recebido na body: {ano}")
     print(f"Extensão do arquivo recebido na body: {extension_file}")
@@ -27,32 +28,69 @@ def lambda_handler(event, context):
 
     print(f'Ano recebido na query: {ano_query}')
 
-    response = ecs.run_task(
-        cluster=os.environ["CLUSTER_ARN"],
-        launchType="FARGATE",
-        taskDefinition=os.environ["TASK_DEFINITION_ARN"],
-        networkConfiguration={
-            "awsvpcConfiguration": {
-                "subnets": os.environ["SUBNETS"].split(","),
-                "securityGroups": os.environ["SECURITY_GROUPS"].split(","),
-                "assignPublicIp": "ENABLED"
-            }
-        },
-        overrides={
-            'containerOverrides': [
-                {
-                    'name': os.environ["NOME_CONTAINER"],
-                    'environment': [
-                        {'name': 'ANO', 'value': ano},
-                        {'name': 'TYPE_DOC', 'value': type_doc}
-                    ],
-                    # Se quiser passar argumentos para o CMD:
-                    'command': ['bash', './etl_sh/execute.sh', ano, type_doc]
+    if type_doc=='credito':
+        
+        type_cred = body['type_cred']
+        print(f"Tipo de cartao de credoito recebido na body: {type_cred}")
+
+        response = ecs.run_task(
+            cluster=os.environ["CLUSTER_ARN"],
+            launchType="FARGATE",
+            taskDefinition=os.environ["TASK_DEFINITION_ARN"],
+            networkConfiguration={
+                "awsvpcConfiguration": {
+                    "subnets": os.environ["SUBNETS"].split(","),
+                    "securityGroups": os.environ["SECURITY_GROUPS"].split(","),
+                    "assignPublicIp": "ENABLED"
                 }
-            ]
+            },
+            overrides={
+                'containerOverrides': [
+                    {
+                        'name': os.environ["NOME_CONTAINER"],
+                        'environment': [
+                            {'name': 'ANO', 'value': ano},
+                            {'name': 'TYPE_DOC', 'value': type_doc},
+                            {'name': 'TYPE_CRED', 'value': type_cred}
+                        ],
+                        # Se quiser passar argumentos para o CMD:
+                        'command': ['bash', './etl_sh/execute.sh', ano, type_doc, type_cred]
+                    }
+                ]
+            }
+        )
+        return {
+            "statusCode": 200,
+            "body": str(response)
         }
-    )
-    return {
-        "statusCode": 200,
-        "body": str(response)
-    }
+
+    else:
+        response = ecs.run_task(
+            cluster=os.environ["CLUSTER_ARN"],
+            launchType="FARGATE",
+            taskDefinition=os.environ["TASK_DEFINITION_ARN"],
+            networkConfiguration={
+                "awsvpcConfiguration": {
+                    "subnets": os.environ["SUBNETS"].split(","),
+                    "securityGroups": os.environ["SECURITY_GROUPS"].split(","),
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            overrides={
+                'containerOverrides': [
+                    {
+                        'name': os.environ["NOME_CONTAINER"],
+                        'environment': [
+                            {'name': 'ANO', 'value': ano},
+                            {'name': 'TYPE_DOC', 'value': type_doc}
+                        ],
+                        # Se quiser passar argumentos para o CMD:
+                        'command': ['bash', './etl_sh/execute.sh', ano, type_doc]
+                    }
+                ]
+            }
+        )
+        return {
+            "statusCode": 200,
+            "body": str(response)
+        }

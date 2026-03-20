@@ -4,14 +4,14 @@ from gspread_dataframe import set_with_dataframe, get_as_dataframe
 
 # Autenticação
 from credencial.credencial_gcp import my_credencial
-
+import os
 
 def connect():
     gc = gspread.service_account(filename=os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
     return gc
 
-def generate_data_from_sheets(sheet_name="extrato_2025", tab_name="extract_cust_transform"):
+def extract_data_from_sheets(sheet_name="extrato_2025", tab_name="extract_cust_transform"):
  
     # Abra a planilha pelo nome
     sh = connect().open(sheet_name)

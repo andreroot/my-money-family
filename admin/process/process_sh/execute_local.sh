@@ -11,4 +11,4 @@ echo "Ano recebido: $ANO"
 echo "🤖 Processo Medallion - PROCESS - Início da instalação 🐋"
 
 echo "🐼 Execução python do ETL PROCESS"
-python3 /app/src/main.py $ANO
+python3 ./src/main.py $ANO

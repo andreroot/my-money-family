@@ -172,10 +172,14 @@ done
 # ANO=$1
 # echo "Ano recebido: $ANO"
 
+# executar container manual local
 # docker exec -it raw-my-cust /bin/bash
 
+# executar conatiner local
 # docker run -i -t cb664a0eb529 /bin/bash
 
+# copia local para s3
+# aws s3 cp "$CSV_SAIDA" "$S3_BUCKET_BRONZE/credito_${ANO}.csv"
 
 
     # REGRA DE TRANSFORMAÇAÕ DE CSV PARA FORMATO

@@ -30,10 +30,11 @@ class CustoSchema(BaseModel):
         Aceita números, strings vazias, formatos BR (1.234,56), 'R$ 1.234,56' e parênteses para negativos.
         Strings vazias -> 0.0 (ajuste se preferir None).
         """
+        # print("Inicio converter str -> float")
         if v is None:
             return 0.0
-        if isinstance(v, (int, float)):
-            return float(v)
+        # if isinstance(v, (int, float, str)):
+        #     return float(v)
         s = str(v).strip()
         if s == '':
             return 0.0
@@ -73,17 +74,14 @@ def model_data(df):
         "saldos (R$)": "valor_saldo"
     })
 
-    print(df.columns)
+    # print(df.columns)
     print(df.dtypes)
     
-
-
-
     try:
         # Valide e converta cada linha para o modelo Pydantic
         registros = [CustoSchema(**row) for row in df.to_dict(orient="records")]
-        print(registros[0])
-        print(type(registros))
+        # print(registros[0])
+        # print(type(registros))
 
         # Serialização para JSON (opcional)
         # registros_serializados = [r.model_dump_json() for r in registros[0]]

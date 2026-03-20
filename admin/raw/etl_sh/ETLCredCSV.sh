@@ -1,8 +1,8 @@
 #!/bin/bash
 sed -n '1p' "$1" > ./output/temp.csv
 
-truncate -s -1  "./output/temp.csv"
-truncate -s -1  "./output/temp.csv"
+# truncate -s -1  "./output/temp.csv"
+# truncate -s -1  "./output/temp.csv"
 
 # ...existing code...
 sed -i -E 's/^([^.]+),([^.]+),([^.]+)/"\1\";"\2\";"\3\"/' "./output/temp.csv"
@@ -26,7 +26,7 @@ grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2},[^.]+' $1 > "./output/temp.csv"
 
 # ...existing code...
 # ADD COLUNA NOME DO ARQUIVO E DATA BASE DIA/MES/ANO
-awk -v fname="$(basename $1)" -v dbase="$data_base" 'BEGIN{ORS="\r\n"} {sub(/\r$/, "", $0)} FNR>1 {print $0 "," fname "," dbase }' "./output/temp.csv" > "./output/temp2.csv"
+awk -v fname="$(basename $1)" -v dbase="$data_base" 'BEGIN{ORS="\r\n"} {sub(/\r$/, "", $0)} FNR>0 {print $0 "," fname "," dbase }' "./output/temp.csv" > "./output/temp2.csv"
 
 # CONVERTENDO DATA ANO-MES-DIA PARA DIA/MES/ANO
 awk -F',' 'BEGIN{OFS=","} NR==0{print; next} { if($1 ~ /^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$/) { split($1,a,"-"); $1=a[3]"/"a[2]"/"a[1] } print }' "./output/temp2.csv" > "./output/temp3.csv"
