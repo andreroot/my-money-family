@@ -1,0 +1,1138 @@
+[
+  {
+    "descricao":"ELECTRON NSA I POSTO 0201",
+    "tipo_custo":"gasolina"
+  },
+  {
+    "descricao":"ELECTRON NSA I POSTO 0201",
+    "tipo_custo":"gasolina"
+  },
+  {
+    "descricao":"ELECTRON LOCALIZA RAC0201",
+    "tipo_custo":"locadora-localiza"
+  },
+  {
+    "descricao":"ELECTRON SHOPPING MET0201",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON OGGI SORVETE0201",
+    "tipo_custo":"alimentacao-sorvete"
+  },
+  {
+    "descricao":"ELECTRON PAES E DOCES0201",
+    "tipo_custo":"padaria"
+  },
+  {
+    "descricao":"ELECTRON CarlosDiyodi0301",
+    "tipo_custo":"feira-legumes"
+  },
+  {
+    "descricao":"ELECTRON GilsonMarque0301",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON VALDENICIO D0301",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON MP ORIEL    0301",
+    "tipo_custo":"feira-frutas"
+  },
+  {
+    "descricao":"ELECTRON BANANAS ANAC0301",
+    "tipo_custo":"feira-banana"
+  },
+  {
+    "descricao":"ELECTRON MP  GILMAR150301",
+    "tipo_custo":"feira-limao"
+  },
+  {
+    "descricao":"ELECTRON PKF COMERCIO0301",
+    "tipo_custo":"feira-ovos"
+  },
+  {
+    "descricao":"ELECTRON CALDO MANABE0301",
+    "tipo_custo":"feira-caldo"
+  },
+  {
+    "descricao":"ELECTRON FLAMENGO ACA0301",
+    "tipo_custo":"alimentacao-futebol"
+  },
+  {
+    "descricao":"ELECTRON Syscashtycke0301",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON RS AVILA    0301",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C0301",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ELECTRON PONTO DA ESF0301",
+    "tipo_custo":"alimentacao-esfiha"
+  },
+  {
+    "descricao":"ELECTRON PADARIA DELI0401",
+    "tipo_custo":"padaria"
+  },
+  {
+    "descricao":"ELECTRON MINI EXTRA-50401",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON SUPER ADVANC0501",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON DROGARIA SAO0501",
+    "tipo_custo":"farmacia"
+  },
+  {
+    "descricao":"ELECTRON 5M COMERCIO 0501",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON HORTIFRUTI T0501",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ITAU SEG VIDA PF   02\/12",
+    "tipo_custo":"banco"
+  },
+  {
+    "descricao":"PAG BOLETO CONDOMINIO EDIFICIO ALLEGRO",
+    "tipo_custo":"condominio"
+  },
+  {
+    "descricao":"PIX TRANSF EDSON A06\/01",
+    "tipo_custo":"futebol"
+  },
+  {
+    "descricao":"ELECTRON MINI EXTRA-50601",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"PIX QRS PAGUEVELOZ08\/01",
+    "tipo_custo":"serasa-divida"
+  },
+  {
+    "descricao":"ELECTRON RS AVILA    0801",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C0901",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ELECTRON MINI EXTRA-50901",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"PIX TRANSF REAL BR09\/01",
+    "tipo_custo":"escola_futebol"
+  },
+  {
+    "descricao":"PIX QRS LOCALIZA FL09\/01",
+    "tipo_custo":"carro"
+  },
+  {
+    "descricao":"PIX QRS LOCALIZA  S09\/01",
+    "tipo_custo":"carro"
+  },
+  {
+    "descricao":"DEB AUTOR UNICEF",
+    "tipo_custo":"ajuda"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C1001",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ELECTRON MINI EXTRA-51001",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON MP ORIEL    1001",
+    "tipo_custo":"feria-frutas"
+  },
+  {
+    "descricao":"ELECTRON MAYO BURGER 1001",
+    "tipo_custo":"feira-legumes"
+  },
+  {
+    "descricao":"ELECTRON RosileneDaSi1001",
+    "tipo_custo":"feira-alho"
+  },
+  {
+    "descricao":"ELECTRON CarlosDiyodi1001",
+    "tipo_custo":"feira-legumes"
+  },
+  {
+    "descricao":"ELECTRON BarracaDoCun1001",
+    "tipo_custo":"feira-batata"
+  },
+  {
+    "descricao":"ELECTRON CASSIO ANDRE1001",
+    "tipo_custo":"feira-tapioca"
+  },
+  {
+    "descricao":"ELECTRON MP FEIRANTE 1001",
+    "tipo_custo":"feira-franngo"
+  },
+  {
+    "descricao":"ELECTRON PRICILA ELAI1001",
+    "tipo_custo":"feira-banana"
+  },
+  {
+    "descricao":"ELECTRON MP PKF      1001",
+    "tipo_custo":"feira-ovos"
+  },
+  {
+    "descricao":"ELECTRON MP GILMAR15 1001",
+    "tipo_custo":"feira-limao"
+  },
+  {
+    "descricao":"ELECTRON MINI EXTRA-51001",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON MINI EXTRA-51001",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C1001",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ELECTRON RS AVILA    1001",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON OGGI SORVETE1001",
+    "tipo_custo":"alimentacao-sorvete"
+  },
+  {
+    "descricao":"ELECTRON 5M COMERCIO 1001",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON MARCELO FERR1101",
+    "tipo_custo":"feria-legumes"
+  },
+  {
+    "descricao":"ELECTRON PEDRO ANTONI1101",
+    "tipo_custo":"feira-caldodecana"
+  },
+  {
+    "descricao":"ELECTRON RR E KK COM 1101",
+    "tipo_custo":"presente-natura"
+  },
+  {
+    "descricao":"ELECTRON MERCADO EXTR1101",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON MINI EXTRA-51201",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C1201",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"SEGURO CARTAO",
+    "tipo_custo":"banco"
+  },
+  {
+    "descricao":"ELECTRON CARTORIO DE 1301",
+    "tipo_custo":"cartorio"
+  },
+  {
+    "descricao":"ELECTRON ACAI E GELIN1301",
+    "tipo_custo":"alimentacao-acai"
+  },
+  {
+    "descricao":"ELECTRON AdolfoOchsen1401",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON PONTO DA ESF1601",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C1601",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C1701",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ELECTRON OrielPereira1701",
+    "tipo_custo":"feira-frutas"
+  },
+  {
+    "descricao":"ELECTRON RosileneDaSi1701",
+    "tipo_custo":"feira-alho"
+  },
+  {
+    "descricao":"ELECTRON CarlosDiyodi1701",
+    "tipo_custo":"feira-legumes"
+  },
+  {
+    "descricao":"ELECTRON GILDASIO ALV1701",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON PKF COMERCIO1701",
+    "tipo_custo":"feira-ovo"
+  },
+  {
+    "descricao":"ELECTRON BANANAS ANAC1701",
+    "tipo_custo":"feira-banana"
+  },
+  {
+    "descricao":"ELECTRON MP GILMAR15 1701",
+    "tipo_custo":"feira-limao"
+  },
+  {
+    "descricao":"ELECTRON CALDO MANABE1701",
+    "tipo_custo":"feira-caldodecana"
+  },
+  {
+    "descricao":"ELECTRON MAYO BURGER 1701",
+    "tipo_custo":"feira-legumes"
+  },
+  {
+    "descricao":"ELECTRON URBANO'S    1701",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON TRIMAIS II  1701",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"PIX QRS MULTIDISPLA18\/01",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"PIX TRANSF Ademar 18\/01",
+    "tipo_custo":"alimentacao-sorvete"
+  },
+  {
+    "descricao":"ELECTRON 5M COMERCIO 1801",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON OGGI SORVETE1801",
+    "tipo_custo":"alimentacao-sorvete"
+  },
+  {
+    "descricao":"ELECTRON SMART BREAK 1801",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON HORA PARK   1801",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"FATURA PAGA Itau Uniclas",
+    "tipo_custo":"cartao"
+  },
+  {
+    "descricao":"ELECTRON FRANCLAU AUT2001",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ITAU BLACK  6515-7648",
+    "tipo_custo":"cartao-black"
+  },
+  {
+    "descricao":"DA  CLARO BL\/IT 75680788",
+    "tipo_custo":"claro"
+  },
+  {
+    "descricao":"PIX QRS MULTIDISPLA21\/01",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON PADARIA JD B2101",
+    "tipo_custo":"padaria"
+  },
+  {
+    "descricao":"ELECTRON ParadaExpres2101",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON LuizaDeFatim2401",
+    "tipo_custo":"comerio"
+  },
+  {
+    "descricao":"ELECTRON PKF COMERCIO2401",
+    "tipo_custo":"feira-ovo"
+  },
+  {
+    "descricao":"ELECTRON WilliamSanto2401",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON PONTO DA ESF2401",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON 5M COMERCIO 2501",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON Shirleydesou2501",
+    "tipo_custo":"comerio"
+  },
+  {
+    "descricao":"ELECTRON PADARIA SOPH2701",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON ENTREPOSTO E2701",
+    "tipo_custo":"gasolina"
+  },
+  {
+    "descricao":"ELECTRON AdolfoOchsen2801",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C2901",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ELECTRON OGGI SORVETE2901",
+    "tipo_custo":"alimentacao-sorvete"
+  },
+  {
+    "descricao":"ELECTRON PadariaCharm2901",
+    "tipo_custo":"padaria"
+  },
+  {
+    "descricao":"ELECTRON DUNGAS BURGU3001",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON MP ORIEL    3101",
+    "tipo_custo":"feira-frutas"
+  },
+  {
+    "descricao":"ELECTRON RosileneDaSi3101",
+    "tipo_custo":"feria-alho"
+  },
+  {
+    "descricao":"ELECTRON MAYO BURGER 3101",
+    "tipo_custo":"feira-legumes"
+  },
+  {
+    "descricao":"ELECTRON CarlosDiyodi3101",
+    "tipo_custo":"feira-legumes"
+  },
+  {
+    "descricao":"ELECTRON CarlosDiyodi3101",
+    "tipo_custo":"feira-legumes"
+  },
+  {
+    "descricao":"ELECTRON BarracaDoCun3101",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON CASSIO ANDRE3101",
+    "tipo_custo":"feira-tapioca"
+  },
+  {
+    "descricao":"ELECTRON FEIRANTES   3101",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON BANANAS ANAC3101",
+    "tipo_custo":"feira-banana"
+  },
+  {
+    "descricao":"ELECTRON MP PKF      3101",
+    "tipo_custo":"feira-ovo"
+  },
+  {
+    "descricao":"ELECTRON MP PKF      3101",
+    "tipo_custo":"feira-ovo"
+  },
+  {
+    "descricao":"ELECTRON MP MARQUES  3101",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C3101",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ELECTRON MARIAJOSEDOS3101",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON FEIJAO NOVO 3101",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON MP BARBEARIA3101",
+    "tipo_custo":"cabelereiro"
+  },
+  {
+    "descricao":"ELECTRON NM PIZZARIA 3101",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"PIX TRANSF ELIZABE02\/02",
+    "tipo_custo":"emprestimo"
+  },
+  {
+    "descricao":"PIX TRANSF Andre N02\/02",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"PIX TRANSF ANDRE N02\/02",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"PIX QRS DEMERGE BRA03\/02",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"IOF",
+    "tipo_custo":"Taxa_banco"
+  },
+  {
+    "descricao":"PIX TRANSF ANDRE N04\/02",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"PIX QRS PAGUEVELOZ04\/02",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"PIX TRANSF Dayane 05\/02",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"PAG BOLETO CONDOMINIO EDIFICIO ALLEGRO",
+    "tipo_custo":"condominio"
+  },
+  {
+    "descricao":"PIX TRANSF REAL BR05\/02",
+    "tipo_custo":"escola_futebol"
+  },
+  {
+    "descricao":"PIX TRANSF EDSON A05\/02",
+    "tipo_custo":"futebol"
+  },
+  {
+    "descricao":"PIX TRANSF Dayane 05\/02",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C0502",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ITAU SEG VIDA PF   03\/12",
+    "tipo_custo":"banco"
+  },
+  {
+    "descricao":"JUROS LIMITE DA CONTA",
+    "tipo_custo":"juros"
+  },
+  {
+    "descricao":"ELECTRON GAROA PAULIS0602",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON MERCADINHO I0602",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON KOTAY       0602",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON OrielPereira0702",
+    "tipo_custo":"feira-frutas"
+  },
+  {
+    "descricao":"ELECTRON FEIRANTES   0702",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON CASSIO ANDRE0702",
+    "tipo_custo":"feira-tapioca"
+  },
+  {
+    "descricao":"ELECTRON PRICILA ELAI0702",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON PKF COMERCIO0702",
+    "tipo_custo":"feira-ovos"
+  },
+  {
+    "descricao":"ELECTRON MP WMVERDURA0702",
+    "tipo_custo":"feira-salada"
+  },
+  {
+    "descricao":"ELECTRON MP REALBRASI0702",
+    "tipo_custo":"escola_futebol"
+  },
+  {
+    "descricao":"ELECTRON PADARIA DELI0802",
+    "tipo_custo":"padaria"
+  },
+  {
+    "descricao":"ELECTRON PADARIA DELI0802",
+    "tipo_custo":"padaria"
+  },
+  {
+    "descricao":"ELECTRON HIP BERGAMIN0802",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"PAGTO FINANC VEIC 01\/48",
+    "tipo_custo":"financiamemto"
+  },
+  {
+    "descricao":"ELECTRON MP MICHELEBA0902",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON PADARIA DELI1002",
+    "tipo_custo":"padaria"
+  },
+  {
+    "descricao":"ELECTRON Churrascaria1002",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"DEB AUTOR UNICEF",
+    "tipo_custo":"ajuda"
+  },
+  {
+    "descricao":"SEGURO CARTAO",
+    "tipo_custo":"banco"
+  },
+  {
+    "descricao":"ELECTRON AdolfoOchsen1102",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON OtavioQuirin1202",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"PIX TRANSF Ademar 13\/02",
+    "tipo_custo":"alimentacao-sorvete"
+  },
+  {
+    "descricao":"ELECTRON THE BEST ACA1302",
+    "tipo_custo":"alimentacao-acai"
+  },
+  {
+    "descricao":"ELECTRON PONTO DA ESF1302",
+    "tipo_custo":"alimentacao-esfiha"
+  },
+  {
+    "descricao":"ELECTRON ATACADAO 0601402",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON AutoPostoAtu1402",
+    "tipo_custo":"gasolina"
+  },
+  {
+    "descricao":"ELECTRON ZIG Jump Are1402",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON MP SAMARCOSD1402",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON AGUA DE COCO1402",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"PIX QRS REAL BRASIL14\/02",
+    "tipo_custo":"escola_futebol"
+  },
+  {
+    "descricao":"ELECTRON QUITANDA E M1502",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON MINI EXTRA-51502",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C1502",
+    "tipo_custo":"acougue"
+  },
+  {
+    "descricao":"ELECTRON FDI FERNAO D1502",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON NSAI POSTO D1602",
+    "tipo_custo":"gasolina"
+  },
+  {
+    "descricao":"ELECTRON DROGARIA SAO1602",
+    "tipo_custo":"farmacia"
+  },
+  {
+    "descricao":"ELECTRON RP SERVICOS 1702",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON RP SERVICOS 1702",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON IvoneteMaria1702",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"FATURA PAGA Itau Uniclas",
+    "tipo_custo":"cartao"
+  },
+  {
+    "descricao":"DA  CLARO BL\/IT 75680788",
+    "tipo_custo":"claro"
+  },
+  {
+    "descricao":"PAG BOLETO CONDOMINIO EDIFICIO ALLEGRO",
+    "tipo_custo":"condominio"
+  },
+  {
+    "descricao":"ELECTRON ArenaSantana0703",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON ArenaSantana0703",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON ArenaSantana0703",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"DEB AUTOR UNICEF",
+    "tipo_custo":"ajuda"
+  },
+  {
+    "descricao":"SEGURO CARTAO",
+    "tipo_custo":"banco"
+  },
+  {
+    "descricao":"DA  CLARO BL\/IT 75680788",
+    "tipo_custo":"claro"
+  },
+  {
+    "descricao":"Agendado",
+    "tipo_custo":"agendado"
+  },
+  {
+    "descricao":"PIX QRS UBER DO BRA03\/01",
+    "tipo_custo":"uber"
+  },
+  {
+    "descricao":"PIX QRS UBER DO BRA03\/01",
+    "tipo_custo":"uber"
+  },
+  {
+    "descricao":"PIX TRANSF IMW 3 R04\/01",
+    "tipo_custo":"igreja"
+  },
+  {
+    "descricao":"DA  CLARO CELULAR  68279",
+    "tipo_custo":"claro"
+  },
+  {
+    "descricao":"PIX QRS UBER DO BRA07\/01",
+    "tipo_custo":"uber"
+  },
+  {
+    "descricao":"PIX TRANSF IMW 3 R11\/01",
+    "tipo_custo":"igreja"
+  },
+  {
+    "descricao":"PIX QRS UBER DO BRA11\/01",
+    "tipo_custo":"uber"
+  },
+  {
+    "descricao":"PIX QRS CEA PAY FUN15\/01",
+    "tipo_custo":"cea"
+  },
+  {
+    "descricao":"DA  CLARO CELULAR  64592",
+    "tipo_custo":"claro"
+  },
+  {
+    "descricao":"DA  ELETROPAULO 11701161",
+    "tipo_custo":"luz"
+  },
+  {
+    "descricao":"DA  COMGAS 51448254",
+    "tipo_custo":"gas"
+  },
+  {
+    "descricao":"FINANC IMOBILIARIO 046\/360",
+    "tipo_custo":"financiamento"
+  },
+  {
+    "descricao":"PIX QRS UBER DO BRA29\/01",
+    "tipo_custo":"uber"
+  },
+  {
+    "descricao":"PIX QRS UBER DO BRA29\/01",
+    "tipo_custo":"uber"
+  },
+  {
+    "descricao":"PIX QRS UBER DO BRA29\/01",
+    "tipo_custo":"uber"
+  },
+  {
+    "descricao":"PIX TRANSF IMW 3 R02\/02",
+    "tipo_custo":"igreja"
+  },
+  {
+    "descricao":"PIX QRS ANDRE NASCI02\/02",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"SABESP      3082129325",
+    "tipo_custo":"agua"
+  },
+  {
+    "descricao":"SABESP      3082129325",
+    "tipo_custo":"agua"
+  },
+  {
+    "descricao":"PIX QRS UBER DO BRA04\/02",
+    "tipo_custo":"uber"
+  },
+  {
+    "descricao":"DA  CLARO CELULAR  68279",
+    "tipo_custo":"claro"
+  },
+  {
+    "descricao":"PIX TRANSF IMW 3 R15\/02",
+    "tipo_custo":"igreja"
+  },
+  {
+    "descricao":"PIX QRS CEA PAY FUN17\/02",
+    "tipo_custo":"cea"
+  },
+  {
+    "descricao":"DA  ELETROPAULO 11701161",
+    "tipo_custo":"luz"
+  },
+  {
+    "descricao":"DA  CLARO CELULAR  64592",
+    "tipo_custo":"claro"
+  },
+  {
+    "descricao":"FINANC IMOBILIARIO 047\/360",
+    "tipo_custo":"financiamento"
+  },
+  {
+    "descricao":"DA  COMGAS 51448254",
+    "tipo_custo":"gas"
+  },
+  {
+    "descricao":"PIX TRANSF IMW 3 R04\/03",
+    "tipo_custo":"igreja"
+  },
+  {
+    "descricao":"DA  CLARO CELULAR  68279",
+    "tipo_custo":"claro"
+  },
+  {
+    "descricao":"DA  CLARO CELULAR  64592",
+    "tipo_custo":"claro"
+  },
+  {
+    "descricao":"PIX QRS MULTIDISPLA18\/02",
+    "tipo_custo":"PIX QRS MULTIDISPLA"
+  },
+  {
+    "descricao":"ELECTRON AdolfoOchsen1802",
+    "tipo_custo":"AdolfoOchsen"
+  },
+  {
+    "descricao":"ELECTRON JULIO BUONO 1902",
+    "tipo_custo":"JULIO BUONO"
+  },
+  {
+    "descricao":"ELECTRON MP DOGS     2002",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON 5M COMERCIO 2002",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"FATURAITAU UNICLASS M",
+    "tipo_custo":"banco"
+  },
+  {
+    "descricao":"ELECTRON MP REALBRASI2102",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON MP  ORIEL   2102",
+    "tipo_custo":"MP  ORIEL"
+  },
+  {
+    "descricao":"ELECTRON OrielPereira2102",
+    "tipo_custo":"OrielPereira"
+  },
+  {
+    "descricao":"ELECTRON MP ORIEL    2102",
+    "tipo_custo":"MP ORIEL"
+  },
+  {
+    "descricao":"ELECTRON RosileneDaSi2102",
+    "tipo_custo":"RosileneDaSi"
+  },
+  {
+    "descricao":"ELECTRON MAYO BURGER 2102",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON CarlosDiyodi2102",
+    "tipo_custo":"CarlosDiyodi"
+  },
+  {
+    "descricao":"ELECTRON BarracaDoCun2102",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON CASSIO ANDRE2102",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"ELECTRON FEIRANTES   2102",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON VERA C VIEIR2102",
+    "tipo_custo":"VERA C VIEIR"
+  },
+  {
+    "descricao":"ELECTRON PKF COMERCIO2102",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON KUNIKO KOHAK2102",
+    "tipo_custo":"KUNIKO KOHAK"
+  },
+  {
+    "descricao":"ELECTRON CALDO MANABE2102",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON CALDO MANABE2102",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON RenanMoraesD2102",
+    "tipo_custo":"RenanMoraesD"
+  },
+  {
+    "descricao":"ELECTRON SAPECA KIDS 2102",
+    "tipo_custo":"escola_futebol"
+  },
+  {
+    "descricao":"ELECTRON CAMPEA      2102",
+    "tipo_custo":"futebol_amigos"
+  },
+  {
+    "descricao":"ELECTRON FRIGOMUNDO C2202",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON MP REALBRASI2202",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON PADARIA DELI2202",
+    "tipo_custo":"padaria"
+  },
+  {
+    "descricao":"ELECTRON GALPAO GAUCH2602",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON MP PADARIAG 2602",
+    "tipo_custo":"padaria"
+  },
+  {
+    "descricao":"ELECTRON OrielPereira2802",
+    "tipo_custo":"OrielPereira"
+  },
+  {
+    "descricao":"ELECTRON MP WMVERDURA2802",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON GILDASIO ALV2802",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"ELECTRON BANANAS ANAC2802",
+    "tipo_custo":"mercado"
+  },
+  {
+    "descricao":"ELECTRON MP PKF      2802",
+    "tipo_custo":"MP PKF"
+  },
+  {
+    "descricao":"ELECTRON ArianaDias  2802",
+    "tipo_custo":"ArianaDias"
+  },
+  {
+    "descricao":"ELECTRON MP ORIEL    2802",
+    "tipo_custo":"MP ORIEL"
+  },
+  {
+    "descricao":"ELECTRON LUIZ ANTONIO2802",
+    "tipo_custo":"LUIZ ANTONIO"
+  },
+  {
+    "descricao":"ELECTRON MP REALBRASI2802",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"PIX QRS TUNA PAGAME01\/03",
+    "tipo_custo":"PIX QRS TUNA PAGAME"
+  },
+  {
+    "descricao":"ELECTRON RS AVILA    0203",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"PIX TRANSF Ademar 02\/03",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"ELECTRON LUIZ ANTONIO0203",
+    "tipo_custo":"LUIZ ANTONIO"
+  },
+  {
+    "descricao":"ELECTRON JulianeLimaD0203",
+    "tipo_custo":"JulianeLimaD"
+  },
+  {
+    "descricao":"ELECTRON MP BARDOGERS0303",
+    "tipo_custo":"comercio"
+  },
+  {
+    "descricao":"ELECTRON MP CHURROSDO0303",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"PIX TRANSF REAL BR04\/03",
+    "tipo_custo":"banco"
+  },
+  {
+    "descricao":"PIX TRANSF REAL BR04\/03",
+    "tipo_custo":"banco"
+  },
+  {
+    "descricao":"ELECTRON MP BARBEARIA0403",
+    "tipo_custo":"cabelereiro"
+  },
+  {
+    "descricao":"ELECTRON LUIZ ANTONIO0503",
+    "tipo_custo":"LUIZ ANTONIO"
+  },
+  {
+    "descricao":"ITAU SEG VIDA PF   04\/12",
+    "tipo_custo":"seguro"
+  },
+  {
+    "descricao":"ELECTRON MP IFECO    0603",
+    "tipo_custo":"MP IFECO"
+  },
+  {
+    "descricao":"PIX TRANSF EDSON A06\/03",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"ELECTRON MARCELO PINH0703",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"ELECTRON MAYO BURGER 0703",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"ELECTRON CarlosDiyodi0703",
+    "tipo_custo":"CarlosDiyodi"
+  },
+  {
+    "descricao":"ELECTRON CASSIO ANDRE0703",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"ELECTRON MP FEIRANTE 0703",
+    "tipo_custo":"feira"
+  },
+  {
+    "descricao":"ELECTRON LuizaDeFatim0703",
+    "tipo_custo":"LuizaDeFatim"
+  },
+  {
+    "descricao":"ELECTRON MP PKF      0703",
+    "tipo_custo":"MP PKF"
+  },
+  {
+    "descricao":"ELECTRON MP ORIEL    0703",
+    "tipo_custo":"MP ORIEL"
+  },
+  {
+    "descricao":"ELECTRON LUIZ ANTONIO0703",
+    "tipo_custo":"LUIZ ANTONIO"
+  },
+  {
+    "descricao":"ELECTRON LUIZ ANTONIO0703",
+    "tipo_custo":"LUIZ ANTONIO"
+  },
+  {
+    "descricao":"ELECTRON OGGI SORVETE0703",
+    "tipo_custo":"sorvete"
+  },
+  {
+    "descricao":"ELECTRON OGGI SORVETE0703",
+    "tipo_custo":"sorvete"
+  },
+  {
+    "descricao":"PIX TRANSF VERA LU07\/03",
+    "tipo_custo":"pessoal"
+  },
+  {
+    "descricao":"ELECTRON T E G FOOD R0803",
+    "tipo_custo":"alimentacao"
+  },
+  {
+    "descricao":"PAGTO FINANC VEIC 02\/48",
+    "tipo_custo":"financiamento_carro"
+  },
+  {
+    "descricao":"ELECTRON ARIZONA PAES0903",
+    "tipo_custo":"alimentacao"
+  }
+]

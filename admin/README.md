@@ -1,108 +1,119 @@
 # ETL dos arquivos baixados do itau
 
 ## RAW
-Execução do docker na AWS via Tasks ECS
+    Execução do docker na AWS via Tasks ECS
 
-```bash
+    Criar env local
+    - export GOOGLE_APPLICATION_CREDENTIALS=~/.ssh/my-chave-gcp-devsamelo2.json
+    - execução do processo em shell script
 
-cd my-money-family
-source ./.venv/bin/activate
-cd ./admin/raw/
-./etl_sh/execute.sh 2026 debito
+    [DEBITO]
+    ```bash
 
-```
+    cd my-money-family
+    source ./.venv/bin/activate
+    cd ./admin/raw/
+    ./etl_sh/execute.sh 2026 debito
 
-**v2 - 18-02 - credito - incluir parametro tipo do cartão**
-```bash
-aws s3 cp . s3://medalion-cust/raw/original/ --recursive --exclude "*" --include "credito_uniclass_black_*.csv"
-aws s3 cp . s3://medalion-cust/raw/original/ --recursive --exclude "*" --include "credito_uniclass_signature_*.csv"
+    ```
+    [CREDITO]
+    **v2 - 18-02 - credito - incluir parametro tipo do cartão**
+    ```bash
+    aws s3 cp . s3://medalion-cust/raw/original/ --recursive --exclude "*" --include "credito_uniclass_black_*.csv"
+    aws s3 cp . s3://medalion-cust/raw/original/ --recursive --exclude "*" --include "credito_uniclass_signature_*.csv"
 
-# uniclass_black
-./etl_sh/execute.sh 2026 credito uniclass_black
-# uniclass_signature
-./etl_sh/execute.sh 2026 credito uniclass_signature
+    # uniclass_black
+    ./etl_sh/execute.sh 2026 credito uniclass_black
+    # uniclass_signature
+    ./etl_sh/execute.sh 2026 credito uniclass_signature
 
 
-```
+    ```
+    - execução via python 
+    python main.py 2026 debito - no python gendebito - alterar busca por dados
+    - csv local
+    - parquet aws
 
-**1. Processo de prepararação de docker image**
 
-```bash
+## 1. Processo de prepararação de docker image
 
-executar deploy / gerar build da image
-raw/deploy_docker_ecs.sh
+    ```bash
 
-```
+    executar deploy / gerar build da image
+    raw/deploy_docker_ecs.sh
 
-- arquivo baixados estao localmente são transferidos para S3
-- login no ecs e atualizar image na aws ecs
-- build image
-- criar tag latest
-- copia image para ecs
-- executa docker via task ecs
-    curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run"
+    ```
 
-    curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2025" \
-    -H "Content-Type: application/json" \
-    -d '{"ano": "2022"}'
+    - arquivo baixados estao localmente são transferidos para S3
+    - login no ecs e atualizar image na aws ecs
+    - build image
+    - criar tag latest
+    - copia image para ecs
+    - executa docker via task ecs
+        curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run"
 
-    curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2025&type_doc=credito" \
-    -H "Content-Type: application/json" \
-    -d '{"ano": "2025", "type_doc": "credito", "extension_file": "xls"}'
+        curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2025" \
+        -H "Content-Type: application/json" \
+        -d '{"ano": "2022"}'
 
-**2. Execução do docker**
-- recebe parametros de fora para dentro do lambda que executa os processos de etl
-```bash
+        curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2025&type_doc=credito" \
+        -H "Content-Type: application/json" \
+        -d '{"ano": "2025", "type_doc": "credito", "extension_file": "xls"}'
 
-Inicio
-./execute.sh PARAM_ANO PARAM_TIPO_DOC
+## 2. Execução do docker
 
-    - base extrato da conta corrente
-    ./etl.sh 
+    - recebe parametros de fora para dentro do lambda que executa os processos de etl
+    ```bash
 
-    - base custo cartão creditos
-    ./etlcred.sh 
+    Inicio
+    ./execute.sh PARAM_ANO PARAM_TIPO_DOC
 
-    - dentro da maq virtualenv 
-    python ./admin/raw/src/main.py 
-```
+        - base extrato da conta corrente
+        ./etl.sh 
 
-Gerando informações no sheets
+        - base custo cartão creditos
+        ./etlcred.sh 
 
-     
+        - dentro da maq virtualenv 
+        python ./admin/raw/src/main.py 
+    ```
+
+    Gerando informações no sheets
+
+        
  
 
 ## PROCESS
-Execução local
+    Execução local
 
-**1. Processo de prepararação de docker image**
+## 1. Processo de prepararação de docker image**
 
-```bash
+    ```bash
 
-executar deploy / gerar build da image
-process/deploy_docker_ecs.sh
+    executar deploy / gerar build da image
+    process/deploy_docker_ecs.sh
 
-```
+    ```
 
-- arquivo baixados estao localmente são trasnferidos para S3
-- login no ecs e atualizar image na aws ecs
-- build image
-- criar tag latest
-- copia image para ecs
-- executa docker via task ecs
-    curl -X POST "https://blgfx6i8j3.execute-api.us-east-1.amazonaws.com/run?ano=2025" \
-    -H "Content-Type: application/json" \
-    -d '{"ano": "2022"}'
+    - arquivo baixados estao localmente são trasnferidos para S3
+    - login no ecs e atualizar image na aws ecs
+    - build image
+    - criar tag latest
+    - copia image para ecs
+    - executa docker via task ecs
+        curl -X POST "https://blgfx6i8j3.execute-api.us-east-1.amazonaws.com/run?ano=2025" \
+        -H "Content-Type: application/json" \
+        -d '{"ano": "2022"}'
 
 
-**2. Execução da Transformação**
+## 2. Execução da Transformação**
 
-```bash
+    ```bash
 
-executar deploy / gerar build da image
-python ./admin/process/src/main.py 
+    executar deploy / gerar build da image
+    python ./admin/process/src/main.py 
 
-```
+    ```
 
-Gerando informações no sheets
+    Gerando informações no sheets
 

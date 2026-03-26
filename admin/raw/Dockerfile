@@ -6,14 +6,17 @@
 
 FROM ubuntu:22.04
 
-ENV GOOGLE_APPLICATION_CREDENTIALS="/app/.ssh/my-chave-gcp-devsamelo2.json"
+ENV GOOGLE_APPLICATION_CREDENTIALS="./.ssh/my-chave-gcp-devsamelo2.json"
 ENV AWS_ACCESS_KEY_ID=
 ENV AWS_SECRET_ACCESS_KEY=
 ENV AWS_DEFAULT_REGION=us-east-1
+ENV OPENAI_API_KEY=
 
 # Instalar dependências do sistema (opcional, útil para bash, curl etc.)
 RUN apt-get update && apt-get install -y libreoffice
 RUN apt-get install -y libreoffice-common libreoffice-calc
+
+RUN apt-get install -y git
 
 # Install dependencies
 RUN apt-get install wget -y && \
@@ -56,9 +59,11 @@ COPY requirements.txt .
 
 # Instalar dependências no sistema (não como user local)
 RUN pip install --no-cache-dir -r requirements.txt csvkit==1.0.7 xlrd==1.2.0
+RUN pip install git+https://github.com/andreroot/diacono-ia.git
 
 # Copiar código fonte e scripts
 COPY src/ ./src/
+COPY src/.env ./src/
 # copy shell script
 COPY etl_sh/ ./etl_sh/
 # Garantir que o entrypoint.sh seja executável

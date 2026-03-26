@@ -8,15 +8,19 @@ variable "aws_access_key_id" {
   type        = string
 }
 
-variable "vpc_security_group_ids" {
-  default = "sg-03bed1bbf17dcf762"
-  type        = string
+variable "aws_secret_access_key" {
+  type        = string  
 }
 
-variable "subnet_id" {
-  default = "subnet-02a00650f067c6118"
-  type        = string
-}
+# variable "vpc_security_group_ids" {
+#   default = "sg-03bed1bbf17dcf762"
+#   type        = string
+# }
+
+# variable "subnet_id" {
+#   default = "subnet-02a00650f067c6118"
+#   type        = string
+# }
 
 variable "nome_container" {
   default = "meu-container"
@@ -28,9 +32,7 @@ variable "nome_container_process" {
   type        = string
 }
 
-variable "aws_secret_access_key" {
-  type        = string  
-}
+
 
 variable "environment" {
   default = "staging"

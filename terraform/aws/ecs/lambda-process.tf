@@ -12,8 +12,8 @@ resource "aws_lambda_function" "ecs_trigger_process" {
     variables = {
       CLUSTER_ARN          = aws_ecs_cluster.app_cluster.arn
       TASK_DEFINITION_ARN  = aws_ecs_task_definition.app_task_process.arn
-      SUBNETS              = var.subnet_id
-      SECURITY_GROUPS      = var.vpc_security_group_ids
+      SUBNETS              = aws_subnet.meu_custo_subnet.id #var.subnet_id
+      SECURITY_GROUPS      = aws_security_group.meu_custo_ecs_sg.id #var.vpc_security_group_ids
       NOME_CONTAINER        = var.nome_container_process
 
     }

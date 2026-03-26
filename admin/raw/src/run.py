@@ -1,6 +1,6 @@
 import pandas as pd
 # generate 
-from sheets.get_data import read_parquet_debito as generate_debito
+from admin.raw.src.sheets.get_sheets import read_parquet_debito as generate_debito
 # model
 from model.model import model_data
 

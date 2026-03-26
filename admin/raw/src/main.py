@@ -5,63 +5,15 @@ import datetime as dt
 
 from concurrent.futures import ThreadPoolExecutor
 
-# model
-from model.model import model_data
-from model.modelcred import model_data as model_data_cred
-
-# generate ler arquivo local csv ou sheets
-from getdata.get_data import read_csv_debito as generate_debito
-from getdata.get_data import read_csv_credito as generate_cred
-
 # gerar arquivos parquet baseados nos arquivos csv
-from sheets.generate_data_analytics import stop, pushout, pushout_cred, pulling
+from generate.generate_data_analytics import stop, pushout, pushout_cred, pulling
 
-class Generate:
-    
-    def __init__(self):
-        pass
-    
-    def main_debito(self, ano): 
-
-        # generate
-        df = pd.DataFrame()
-
-        df = generate_debito(ano)
-
-        dfd = model_data(df)
-        if dfd is not None:
-            dfd["valor_custo"] = dfd["valor_custo"].fillna(0)
-            dfd["valor_saldo"] = dfd["valor_saldo"].fillna(0)
-            # ... resto do processamento ...
-        else:
-            print("Erro ao validar dados, DataFrame não foi criado.")    
-
-        now = dt.datetime.now()
-        dt_process = dt.datetime.fromtimestamp(dt.datetime.timestamp(now))
-
-        dfd["process_time"] = dt_process #.strftime("%Y-%m-%d %H:%M:%S.%f %z")
-
-        return dfd
-    
-    def main_credito(self, ano, flag_unir):
-
-        # generate
-        dfc = pd.DataFrame()
-
-        dfc = generate_cred(ano, flag_unir)
-
-        dfc = model_data_cred(dfc)
-
-        now = dt.datetime.now()
-        dt_process = dt.datetime.fromtimestamp(dt.datetime.timestamp(now))
-
-        dfc["process_time"] = dt_process #.strftime("%Y-%m-%d %H:%M:%S.%f %z")
-        
-        return dfc
+from generate.gendebito import Generate as GenerateDeb
+from generate.gencredito import Generate as GenerateCred
 
 if __name__=='__main__':
 
-    m = Generate()
+
     ano = sys.argv[1]
     type_doc = sys.argv[2]
 
@@ -73,10 +25,11 @@ if __name__=='__main__':
         # debito: custo, receber, saldo
         dfd = pd.DataFrame()
         
-        dfd = m.main_debito(ano)
+        # instancia classe gera dados apartior de csv ou parquet - local ou na aws
+        md = GenerateDeb()
+        dfd = md.main_debito(ano)
 
         # dfd = generate_debito(ano)
-
         # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
 
         with ThreadPoolExecutor(max_workers=3)  as executor:
@@ -96,14 +49,17 @@ if __name__=='__main__':
                         print(f"Tarefa {i}: erro -> {future.exception()}", "\n")
 
     elif type_doc=='credito':
-        
-        
+
         # credito
         dfc = pd.DataFrame()
+
+        # instancia classe gera dados apartior de csv ou parquet - local ou na aws
+        mc = GenerateCred()
+
         if ano=='2026':
-            dfc = m.main_credito(ano, True)
+            dfc = mc.main_credito(ano, True)
         else:
-            dfc = m.main_credito(ano, False)
+            dfc = mc.main_credito(ano, False)
 
         # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
 
@@ -124,12 +80,14 @@ if __name__=='__main__':
     else:
 
         # debito: custo, receber, saldo
+        md = GenerateDeb()
         dfd = pd.DataFrame()
-        dfd = m.main_debito(ano)
+        dfd = md.main_debito(ano)
 
         # credito
+        mc = GenerateCred()
         dfc = pd.DataFrame()
-        dfc = m.main_credito(ano)
+        dfc = mc.main_credito(ano)
 
         # tasks = [pushout(dfd, ano), pulling(dfd, ano), stop(dfd, ano), pushout_cred(dfc, ano)]
 

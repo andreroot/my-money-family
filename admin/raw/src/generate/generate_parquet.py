@@ -72,8 +72,15 @@ def generate_parquet_analytics(df, tipo_analitico, file):
     )
 
 
-# if __name__=='__main__':
+def generate_parquet_categoria(df, file):
 
-#     generate_credito('2025')
-#     generate_credito('2024')
-#     generate_debito('2025')
+    # escreve particionado no S3
+    df.to_parquet(
+        f"s3://medalion-cust/silver/file/{file}.parquet",
+        engine="pyarrow",
+        compression="snappy",
+        index=False,
+        # partition_cols=['year', 'month'],
+        storage_options={}  # deixe vazio se AWS credentials estiverem no ambiente
+    )
+

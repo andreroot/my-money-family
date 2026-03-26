@@ -5,14 +5,14 @@ import pandas as pd
 import os
 import datetime as dt    
 
-def get_parquet_process(parquet_file: str = None, tipo_docu: str = None, s3_options: dict = None) -> pd.DataFrame:
+def get_parquet_silver(parquet_file: str = None, tipo_docu: str = None, s3_options: dict = None) -> pd.DataFrame:
  
     """
     Se s3_path for fornecido, lê parquet diretamente do S3 e retorna o DataFrame.
     Caso contrário, mantém o comportamento existente (ler do Google Sheets).
 
     Exemplo de chamada para S3:
-      generate_process(s3_path="s3://medalion-cust/processed/credito_2025.parquet")
+      generate_process(s3_path="s3://medalion-cust/silver/credito|debito/credito_2025.parquet|extrato_2026.parquet")
 
     Requisitos:
       pip install pyarrow s3fs
@@ -20,6 +20,7 @@ def get_parquet_process(parquet_file: str = None, tipo_docu: str = None, s3_opti
     """
 
     s3_path=f"s3://medalion-cust/silver/{tipo_docu}/{parquet_file}.parquet"
+    # generate_parquet_analytics(df, 'pushout_saida', f'extract_cust_transform_{ano}')
 
     if s3_path:
         # leitura direta do parquet em S3 (pyarrow/s3fs)

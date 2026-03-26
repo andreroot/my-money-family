@@ -4,12 +4,12 @@ import os
 import datetime as dt    
 
 # generate cust
-from transform.transform_cust import  func_generate_sheets_type_cust, func_generate_calender, func_generate_depto_cust, func_generate_fix_type_cust
+from transform.transform_cust import  func_generate_type_cust, func_generate_calender, func_generate_depto_cust
 
 from transform.transform_receb import func_transform_receb
 
-from parquet.generate_parquet import generate_parquet_analytics
-from sheets.generate_sheets import generate_analytics_sheets_stop, generate_analytics_sheets_pushout, generate_analytics_sheets_pushout_cred, generate_analytics_sheets_pulling
+from generate.generate_parquet import generate_parquet_analytics, generate_parquet_categoria
+from generate.generate_sheets import generate_analytics_sheets_stop, generate_analytics_sheets_pushout, generate_analytics_sheets_pushout_cred, generate_analytics_sheets_pulling
 
 
 # TRANSFORMACAO DO DADOS DE SALDO 
@@ -42,15 +42,21 @@ def pushout(df, ano):
     df["valor_custo"] = df["valor_custo"].abs()
 
     # transform dados + colunas
-    df = func_generate_sheets_type_cust(df)
-    df = func_generate_fix_type_cust(df)
+    # DEPRECIATO - 25/03 - novo modelo com IA diacono-ia, que reconhece o texto como um texto ja categorizado ou busca um nova categorização
+
+    # df = func_generate_sheets_type_cust(df) --> depreciato 25/03
+    # df = func_generate_fix_type_cust(df) --> depreciato 25/03
+    df = func_generate_type_cust(df, ano)
     df = func_generate_calender(df)
     df = func_generate_depto_cust(df)
 
-    # Rename columns for consistency
+    # Generate parquet custo pos processamento
     generate_parquet_analytics(df, 'pushout_saida', f'extract_cust_transform_{ano}')
 
-    # Abra a planilha pelo nome
+    # Generate depara processado via ia
+    generate_parquet_categoria(df[['descricao','tipo_custo']], 'categoria_deb')
+    
+    # Generate sheets a planilha pelo nome
     generate_analytics_sheets_pushout(df[['dt_custo', 'descricao', 'valor_custo', 'data_base', 'process_time', 'tipo_custo', 'dept_custo', 'classificacao_custo', 'area_custo']], 
                                         ano, 
                                         'extract_cust_transform')
@@ -86,9 +92,11 @@ def pushout_cred(df, ano):
     df = df.loc[df['valor_credito'] > 0].copy()
 
     # transform dados + colunas
-    df = func_generate_sheets_type_cust(df)
-    df = func_generate_fix_type_cust(df)
-    # df = func_generate_calender(df)
+    # DEPRECIATO - 25/03 - novo modelo com IA diacono-ia, que reconhece o texto como um texto ja categorizado ou busca um nova categorização
+
+    # df = func_generate_sheets_type_cust(df) --> depreciato 25/03
+    # df = func_generate_fix_type_cust(df) --> depreciato 25/03
+    df = func_generate_type_cust(df, ano)
     df = func_generate_depto_cust(df)
 
     df = df.rename(columns={
@@ -100,6 +108,9 @@ def pushout_cred(df, ano):
     })
 
     generate_parquet_analytics(df, 'pushout_cred', f'extract_cred_transform_{ano}')
+
+    # Generate depara processado via ia
+    generate_parquet_categoria(df[['descricao','tipo_custo']], 'categoria_cre')
 
     # Abra a planilha pelo nome
     generate_analytics_sheets_pushout_cred(df[["dt_credito", "descricao", "valor_credito", "data_base", "process_time", "tipo_credito", "dept_credito", "classificacao_credito", "area_credito"]], 

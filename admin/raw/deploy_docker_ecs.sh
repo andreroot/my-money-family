@@ -34,7 +34,7 @@ aws ecr get-login-password --region $AWS_REGION \
 # ==== BUILD DA IMAGEM ====
 echo "[2/4] Construindo imagem Docker..."
 # docker build -t $REPO_NAME .
-cd /home/andre/projetos/my-money-family/admin/raw
+cd /home/andre/projeto/my-money-family/admin/raw
 
 cp ~/.ssh/my-chave-gcp-devsamelo2.json my-chave-gcp-devsamelo2.json
 
@@ -60,11 +60,11 @@ echo "   $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:$IMAGE_TAG
 echo "Atualizando arquivos no S3..."
 # aws s3 cp "/mnt/c/Users/andre/Documents/github/my-money-family/admin/etl/excel/credito/2021" "s3://medalion-cust/raw/original/" --recursive --exclude "*" --include "credito_2021_*.xls"
 # aws s3 cp "/mnt/c/Users/andre/Documents/github/my-money-family/admin/etl/excel/credito/2021" "s3://medalion-cust/raw/original/" --recursive --exclude "*" --include "credito_2021_*.xls"
-
+aws s3 cp "/mnt/c/Users/andre/Documents/github/my-money-family/admin/etl/excel/" "s3://medalion-cust/raw/original/" --recursive --exclude "*" --include "custo_*.xls"
 aws s3 cp "/mnt/c/Users/andre/Documents/github/my-money-family/admin/etl/excel/" "s3://medalion-cust/raw/original/" --recursive --exclude "*" --include "credito_uniclass_signature_*.csv"
 aws s3 cp "/mnt/c/Users/andre/Documents/github/my-money-family/admin/etl/excel/" "s3://medalion-cust/raw/original/" --recursive --exclude "*" --include "credito_uniclass_black_*.csv"
 
-rm -rf /home/andre/projetos/my-money-family/admin/raw/my-chave-gcp-devsamelo2.json
+rm -rf /home/andre/projeto/my-money-family/admin/raw/my-chave-gcp-devsamelo2.json
 
 # ==== EXECUTE PIPELINE ====
 echo "Executando..."
@@ -74,8 +74,8 @@ curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=202
 
 curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2026&type_doc=credito&type_cred=uniclass_signature" \
   -H "Content-Type: application/json" \
-  -d '{"ano": "2026", "type_doc": "credito", "type_cred": "uniclass_signature",   "extension_file": "xls"}'
+  -d '{"ano": "2026", "type_doc": "credito", "type_cred": "uniclass_signature",   "extension_file": "csv"}'
 
 curl -X POST "https://0cgzijkxda.execute-api.us-east-1.amazonaws.com/run?ano=2026&type_doc=credito&type_cred=uniclass_black" \
   -H "Content-Type: application/json" \
-  -d '{"ano": "2026", "type_doc": "credito", "type_cred": "uniclass_black",   "extension_file": "xls"}'
+  -d '{"ano": "2026", "type_doc": "credito", "type_cred": "uniclass_black",   "extension_file": "csv"}'

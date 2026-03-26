@@ -15,7 +15,7 @@ from sheets.generate_sheets import generate_analytics_sheets_stop, generate_anal
 # TRANSFORMACAO DO DADOS DE SALDO 
 def stop(df, ano):
 
-    print(f"-->SALDO / NEGATICO OU POSITIVO / STOP", "\n")
+    print(f"-->SALDO / DEBITO / STOP", "\n")
 
     df = df.loc[(df['descricao'].str.contains(r'SALDO[^\\b]+\w|SDO[^\\b]+CTA\/+APL[^\\b]+\w'))].copy()
 
@@ -33,7 +33,7 @@ def stop(df, ano):
 # TRANSFORMACAO DO DADOS DE CUSTO 
 def pushout(df, ano):
 
-    print(f"-->SAIDA / CUSTO / PUSHOUT", "\n")
+    print(f"-->SAIDA / DEBITO / PUSHOUT", "\n")
 
     # definição do contexto nos dados identifcar como custo
     df = df.loc[df['valor_custo'] < 0].copy()
@@ -58,7 +58,7 @@ def pushout(df, ano):
 # TRANSFORMACAO DO DADOS DE RECEBIMENTO 
 def pulling(df, ano):
 
-    print(f"-->ENTRADA / RECEBIDOS / PULLING", "\n")
+    print(f"-->ENTRADA / DEBITO / PULLING", "\n")
 
     # definição do contexto nos dados identifcar como recebido
     df = df.loc[df['valor_receb'] >= 0].copy()
@@ -109,3 +109,31 @@ def pushout_cred(df, ano):
 
 
 
+# TRANSFORMACAO DO DADOS DE PAGAMENTO 
+def payment_cred(df, ano):
+
+    print(f"-->ENTRADA / CREDITO / PAYMENT", "\n")
+
+
+    # transform dados + colunas
+    df = func_generate_sheets_type_cust(df)
+    df = func_generate_fix_type_cust(df)
+    # df = func_generate_calender(df)
+    df = func_generate_depto_cust(df)
+
+    df = df.rename(columns={
+        "tipo_custo": "tipo_credito",
+        "dept_custo": "dept_credito",
+        "classificacao_custo": "classificacao_credito",
+        "area_custo": "area_credito"
+
+    })
+
+    df = df.loc[df['valor_credito'] > 0].copy()
+
+    generate_parquet_analytics(df, 'pushout_cred', f'extract_cred_transform_{ano}')
+
+    # Abra a planilha pelo nome
+    generate_analytics_sheets_pushout_cred(df[["dt_credito", "descricao", "valor_credito", "data_base", "process_time", "tipo_credito", "dept_credito", "classificacao_credito", "area_credito"]], 
+                                            ano, 
+                                            'extract_cred_transform')
